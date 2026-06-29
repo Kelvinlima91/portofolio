@@ -206,10 +206,19 @@ const badges: Badge[] = [
       </div>
 
       <!-- ── RIGHT: monitor illustration ── -->
-      <div class="relative flex items-center justify-center py-16 lg:py-8">
+      <div
+        class="relative flex items-center justify-center py-20 lg:py-16 px-10 rounded-2xl"
+        style="background: linear-gradient(135deg, #0a1628, #0d1f3c); min-height: 460px; overflow: visible;"
+      >
+        <!-- Centered radial glow -->
+        <div
+          class="absolute inset-0 rounded-2xl pointer-events-none"
+          style="background: radial-gradient(circle at center, #0ea5e922 0%, transparent 70%);"
+          aria-hidden="true"
+        ></div>
 
         <!-- Monitor wrapper (badges are positioned relative to this) -->
-        <div class="relative" style="width: 380px;">
+        <div class="relative" style="width: 380px; z-index: 1;">
 
           <!-- Tech badges (absolutely positioned around monitor) -->
           {badges.map((b) => (
@@ -295,7 +304,7 @@ const badges: Badge[] = [
   ═══════════════════════════════════════════ -->
   <section
     id="projetos"
-    class="py-24 fade-in"
+    class="py-16 fade-in"
     aria-labelledby="projects-heading"
   >
     <div class="max-w-6xl mx-auto px-6">
@@ -303,7 +312,7 @@ const badges: Badge[] = [
       <!-- Section heading -->
       <h2
         id="projects-heading"
-        class="font-serif text-2xl font-semibold mb-12"
+        class="font-serif text-2xl font-semibold mb-8"
         style="color: var(--color-text-primary);"
         x-text="t.section_projects"
       >
@@ -482,7 +491,7 @@ const badges: Badge[] = [
   ═══════════════════════════════════════════ -->
   <section
     id="educacao"
-    class="py-24 fade-in"
+    class="py-16 fade-in"
     aria-labelledby="education-heading"
   >
     <div class="max-w-4xl mx-auto px-6">
@@ -490,7 +499,7 @@ const badges: Badge[] = [
       <!-- Section heading -->
       <h2
         id="education-heading"
-        class="font-serif text-2xl font-semibold mb-16 text-center"
+        class="font-serif text-2xl font-semibold mb-12 text-center"
         style="color: var(--color-text-primary);"
         x-text="t.section_education"
       >
@@ -671,80 +680,130 @@ const badges: Badge[] = [
   ═══════════════════════════════════════════ -->
   <section
     id="stack"
-    class="py-24 fade-in"
+    class="py-16 fade-in"
     aria-labelledby="stack-heading"
   >
     <div class="max-w-6xl mx-auto px-6">
 
       <h2
         id="stack-heading"
-        class="font-serif text-2xl font-semibold mb-10"
+        class="font-serif text-2xl font-semibold mb-8"
         style="color: var(--color-text-primary);"
         x-text="t.section_stack"
       >
         Stack técnica
       </h2>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px;">
+      <div class="stack-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
 
-        <!-- PHP · Laravel -->
+        <!-- PHP 8.2 · Laravel -->
         <div
-          class="flex flex-col"
-          style="gap: 6px; background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 8px; padding: 14px 16px;"
+          class="stack-card relative flex flex-col overflow-hidden transition-colors duration-300"
+          style="background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 12px; padding: 20px; gap: 14px; --card-accent: #818cf8;"
         >
-          <i class="ti ti-brand-php" style="font-size: 18px; color: #0ea5e9;"></i>
-          <span style="font-size: 13px; color: #94a3b8; font-weight: 500;">PHP 8.2 · Laravel</span>
-          <span class="font-mono" style="font-size: 11px; color: #374151;" x-text="t.stack_php_sub">Backend principal</span>
+          <!-- Top color bar -->
+          <div class="absolute top-0 left-0 right-0" style="height: 2px; background: linear-gradient(to right, #818cf8, #818cf840); border-radius: 12px 12px 0 0;"></div>
+          <!-- Header: icon + badge -->
+          <div class="flex items-start justify-between pt-1">
+            <div class="flex items-center justify-center" style="width: 38px; height: 38px; background: #818cf815; border-radius: 8px;">
+              <i class="ti ti-brand-php" style="font-size: 20px; color: #818cf8;"></i>
+            </div>
+            <span class="font-mono" style="font-size: 10px; color: #818cf8; border: 1px solid #818cf840; border-radius: 4px; padding: 2px 7px;">Backend</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 14px; color: #e2e8f0; font-weight: 500;">PHP 8.2 · Laravel</span>
+            <span class="font-mono" style="font-size: 11px; color: #4b5563; line-height: 1.5;" x-text="t.stack_php_sub">Framework principal para todos os projectos</span>
+          </div>
         </div>
 
         <!-- Tailwind CSS v4 -->
         <div
-          class="flex flex-col"
-          style="gap: 6px; background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 8px; padding: 14px 16px;"
+          class="stack-card relative flex flex-col overflow-hidden transition-colors duration-300"
+          style="background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 12px; padding: 20px; gap: 14px; --card-accent: #0ea5e9;"
         >
-          <i class="ti ti-palette" style="font-size: 18px; color: #0ea5e9;"></i>
-          <span style="font-size: 13px; color: #94a3b8; font-weight: 500;">Tailwind CSS v4</span>
-          <span class="font-mono" style="font-size: 11px; color: #374151;">Styling</span>
+          <div class="absolute top-0 left-0 right-0" style="height: 2px; background: linear-gradient(to right, #0ea5e9, #0ea5e940); border-radius: 12px 12px 0 0;"></div>
+          <div class="flex items-start justify-between pt-1">
+            <div class="flex items-center justify-center" style="width: 38px; height: 38px; background: #0ea5e915; border-radius: 8px;">
+              <i class="ti ti-palette" style="font-size: 20px; color: #0ea5e9;"></i>
+            </div>
+            <span class="font-mono" style="font-size: 10px; color: #0ea5e9; border: 1px solid #0ea5e940; border-radius: 4px; padding: 2px 7px;">Styling</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 14px; color: #e2e8f0; font-weight: 500;">Tailwind CSS v4</span>
+            <span class="font-mono" style="font-size: 11px; color: #4b5563; line-height: 1.5;" x-text="t.stack_tw_sub">Utility-first CSS, design tokens</span>
+          </div>
         </div>
 
         <!-- Alpine.js -->
         <div
-          class="flex flex-col"
-          style="gap: 6px; background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 8px; padding: 14px 16px;"
+          class="stack-card relative flex flex-col overflow-hidden transition-colors duration-300"
+          style="background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 12px; padding: 20px; gap: 14px; --card-accent: #a78bfa;"
         >
-          <i class="ti ti-bolt" style="font-size: 18px; color: #0ea5e9;"></i>
-          <span style="font-size: 13px; color: #94a3b8; font-weight: 500;">Alpine.js</span>
-          <span class="font-mono" style="font-size: 11px; color: #374151;" x-text="t.stack_alpine_sub">Interactividade</span>
+          <div class="absolute top-0 left-0 right-0" style="height: 2px; background: linear-gradient(to right, #a78bfa, #a78bfa40); border-radius: 12px 12px 0 0;"></div>
+          <div class="flex items-start justify-between pt-1">
+            <div class="flex items-center justify-center" style="width: 38px; height: 38px; background: #a78bfa15; border-radius: 8px;">
+              <i class="ti ti-bolt" style="font-size: 20px; color: #a78bfa;"></i>
+            </div>
+            <span class="font-mono" style="font-size: 10px; color: #a78bfa; border: 1px solid #a78bfa40; border-radius: 4px; padding: 2px 7px;">Frontend</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 14px; color: #e2e8f0; font-weight: 500;">Alpine.js</span>
+            <span class="font-mono" style="font-size: 11px; color: #4b5563; line-height: 1.5;" x-text="t.stack_alpine_sub">Interactividade leve, sem overhead</span>
+          </div>
         </div>
 
         <!-- Pest PHP -->
         <div
-          class="flex flex-col"
-          style="gap: 6px; background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 8px; padding: 14px 16px;"
+          class="stack-card relative flex flex-col overflow-hidden transition-colors duration-300"
+          style="background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 12px; padding: 20px; gap: 14px; --card-accent: #22c55e;"
         >
-          <i class="ti ti-test-pipe" style="font-size: 18px; color: #0ea5e9;"></i>
-          <span style="font-size: 13px; color: #94a3b8; font-weight: 500;">Pest PHP</span>
-          <span class="font-mono" style="font-size: 11px; color: #374151;" x-text="t.stack_pest_sub">Testes</span>
+          <div class="absolute top-0 left-0 right-0" style="height: 2px; background: linear-gradient(to right, #22c55e, #22c55e40); border-radius: 12px 12px 0 0;"></div>
+          <div class="flex items-start justify-between pt-1">
+            <div class="flex items-center justify-center" style="width: 38px; height: 38px; background: #22c55e15; border-radius: 8px;">
+              <i class="ti ti-test-pipe" style="font-size: 20px; color: #22c55e;"></i>
+            </div>
+            <span class="font-mono" style="font-size: 10px; color: #22c55e; border: 1px solid #22c55e40; border-radius: 4px; padding: 2px 7px;">Testes</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 14px; color: #e2e8f0; font-weight: 500;">Pest PHP</span>
+            <span class="font-mono" style="font-size: 11px; color: #4b5563; line-height: 1.5;" x-text="t.stack_pest_sub">107+ testes, TDD no O Menu CV</span>
+          </div>
         </div>
 
         <!-- MySQL · SQLite -->
         <div
-          class="flex flex-col"
-          style="gap: 6px; background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 8px; padding: 14px 16px;"
+          class="stack-card relative flex flex-col overflow-hidden transition-colors duration-300"
+          style="background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 12px; padding: 20px; gap: 14px; --card-accent: #f59e0b;"
         >
-          <i class="ti ti-database" style="font-size: 18px; color: #0ea5e9;"></i>
-          <span style="font-size: 13px; color: #94a3b8; font-weight: 500;">MySQL · SQLite</span>
-          <span class="font-mono" style="font-size: 11px; color: #374151;" x-text="t.stack_db_sub">Bases de dados</span>
+          <div class="absolute top-0 left-0 right-0" style="height: 2px; background: linear-gradient(to right, #f59e0b, #f59e0b40); border-radius: 12px 12px 0 0;"></div>
+          <div class="flex items-start justify-between pt-1">
+            <div class="flex items-center justify-center" style="width: 38px; height: 38px; background: #f59e0b15; border-radius: 8px;">
+              <i class="ti ti-database" style="font-size: 20px; color: #f59e0b;"></i>
+            </div>
+            <span class="font-mono" style="font-size: 10px; color: #f59e0b; border: 1px solid #f59e0b40; border-radius: 4px; padding: 2px 7px;">Database</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 14px; color: #e2e8f0; font-weight: 500;">MySQL · SQLite</span>
+            <span class="font-mono" style="font-size: 11px; color: #4b5563; line-height: 1.5;" x-text="t.stack_db_sub">Produção MySQL, desenvolvimento SQLite</span>
+          </div>
         </div>
 
         <!-- Git · GitHub -->
         <div
-          class="flex flex-col"
-          style="gap: 6px; background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 8px; padding: 14px 16px;"
+          class="stack-card relative flex flex-col overflow-hidden transition-colors duration-300"
+          style="background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 12px; padding: 20px; gap: 14px; --card-accent: #f05032;"
         >
-          <i class="ti ti-brand-git" style="font-size: 18px; color: #0ea5e9;"></i>
-          <span style="font-size: 13px; color: #94a3b8; font-weight: 500;">Git · GitHub</span>
-          <span class="font-mono" style="font-size: 11px; color: #374151;" x-text="t.stack_git_sub">Versionamento</span>
+          <div class="absolute top-0 left-0 right-0" style="height: 2px; background: linear-gradient(to right, #f05032, #f0503240); border-radius: 12px 12px 0 0;"></div>
+          <div class="flex items-start justify-between pt-1">
+            <div class="flex items-center justify-center" style="width: 38px; height: 38px; background: #f0503215; border-radius: 8px;">
+              <i class="ti ti-brand-git" style="font-size: 20px; color: #f05032;"></i>
+            </div>
+            <span class="font-mono" style="font-size: 10px; color: #f05032; border: 1px solid #f0503240; border-radius: 4px; padding: 2px 7px;">DevOps</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 14px; color: #e2e8f0; font-weight: 500;">Git · GitHub</span>
+            <span class="font-mono" style="font-size: 11px; color: #4b5563; line-height: 1.5;" x-text="t.stack_git_sub">Versionamento, GitHub Desktop, CI</span>
+          </div>
         </div>
 
       </div>
@@ -756,64 +815,122 @@ const badges: Badge[] = [
   ═══════════════════════════════════════════ -->
   <section
     id="contacto"
-    class="py-24 fade-in"
+    class="py-16 fade-in"
     aria-labelledby="contact-heading"
   >
     <div class="max-w-6xl mx-auto px-6">
 
       <h2
         id="contact-heading"
-        class="font-serif text-2xl font-semibold mb-4"
+        class="font-serif text-2xl font-semibold mb-8"
         style="color: var(--color-text-primary);"
         x-text="t.section_contact"
       >
         Contacto
       </h2>
 
-      <p
-        class="text-sm mb-10"
-        style="color: var(--color-text-muted);"
-        x-text="t.contact_tagline"
-      >
-        Tens um projecto em mente? Fala comigo.
-      </p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start;">
 
-      <div class="flex flex-wrap gap-3">
+        <!-- ── Left column ── -->
+        <div class="flex flex-col gap-5">
+          <div>
+            <p
+              class="text-base font-medium mb-1"
+              style="color: var(--color-text-primary);"
+              x-text="t.contact_tagline"
+            >
+              Tens um projecto em mente? Fala comigo.
+            </p>
+            <p
+              class="text-sm"
+              style="color: var(--color-text-muted);"
+              x-text="t.contact_reply"
+            >
+              Respondo em 24h.
+            </p>
+          </div>
 
-        <!-- Email -->
-        <a
-          href="mailto:hello@kelvinlima.dev"
-          class="contact-link flex items-center transition-all duration-200"
-          style="gap: 8px; background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 8px; padding: 12px 18px; font-size: 13px; color: #6b7280; text-decoration: none;"
-        >
-          <i class="ti ti-mail" style="font-size: 16px;"></i>
-          hello@kelvinlima.dev
-        </a>
+          <!-- Email button -->
+          <a
+            href="mailto:hello@kelvinlima.dev"
+            class="contact-email-btn flex items-center gap-3 transition-all duration-200"
+            style="background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 10px; padding: 14px 18px; text-decoration: none; width: 100%;"
+          >
+            <i class="ti ti-mail" style="font-size: 18px; color: #0ea5e9; flex-shrink: 0;"></i>
+            <span class="font-mono" style="font-size: 13px; color: #94a3b8;">hello@kelvinlima.dev</span>
+          </a>
+        </div>
 
-        <!-- GitHub -->
-        <a
-          href="https://github.com/Kelvinlima91"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="contact-link flex items-center transition-all duration-200"
-          style="gap: 8px; background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 8px; padding: 12px 18px; font-size: 13px; color: #6b7280; text-decoration: none;"
-        >
-          <i class="ti ti-brand-github" style="font-size: 16px;"></i>
-          GitHub
-        </a>
+        <!-- ── Right column: 2×2 social grid ── -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
 
-        <!-- LinkedIn -->
-        <a
-          href="https://linkedin.com/in/kelvinlima"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="contact-link flex items-center transition-all duration-200"
-          style="gap: 8px; background: #0c0f1a; border: 0.5px solid #1a1e2e; border-radius: 8px; padding: 12px 18px; font-size: 13px; color: #6b7280; text-decoration: none;"
-        >
-          <i class="ti ti-brand-linkedin" style="font-size: 16px;"></i>
-          LinkedIn
-        </a>
+          <!-- GitHub -->
+          <a
+            href="https://github.com/Kelvinlima91"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-card flex flex-col transition-all duration-200"
+            style="gap: 8px; background: #0d1117; border: 1px solid #30363d; border-radius: 10px; padding: 16px; text-decoration: none; --hover-border: #6e7681;"
+          >
+            <div class="flex items-center justify-center" style="width: 32px; height: 32px; background: #21262d; border-radius: 8px;">
+              <i class="ti ti-brand-github" style="font-size: 16px; color: #e2e8f0;"></i>
+            </div>
+            <div>
+              <p style="font-size: 13px; color: #e2e8f0; font-weight: 500; margin: 0 0 2px;">GitHub</p>
+              <p class="font-mono" style="font-size: 11px; color: #4b5563; margin: 0;">@Kelvinlima91</p>
+            </div>
+          </a>
 
+          <!-- LinkedIn -->
+          <a
+            href="https://linkedin.com/in/kelvinlima"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-card flex flex-col transition-all duration-200"
+            style="gap: 8px; background: #0a1628; border: 1px solid #0ea5e930; border-radius: 10px; padding: 16px; text-decoration: none; --hover-border: #0ea5e9;"
+          >
+            <div class="flex items-center justify-center" style="width: 32px; height: 32px; background: #0ea5e920; border-radius: 8px;">
+              <i class="ti ti-brand-linkedin" style="font-size: 16px; color: #0ea5e9;"></i>
+            </div>
+            <div>
+              <p style="font-size: 13px; color: #e2e8f0; font-weight: 500; margin: 0 0 2px;">LinkedIn</p>
+              <p class="font-mono" style="font-size: 11px; color: #4b5563; margin: 0;">kelvinlima</p>
+            </div>
+          </a>
+
+          <!-- X / Twitter -->
+          <a
+            href="https://x.com/kelvinlima"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-card flex flex-col transition-all duration-200"
+            style="gap: 8px; background: #030712; border: 1px solid #1d9bf030; border-radius: 10px; padding: 16px; text-decoration: none; --hover-border: #1d9bf0;"
+          >
+            <div class="flex items-center justify-center" style="width: 32px; height: 32px; background: #1d9bf020; border-radius: 8px;">
+              <i class="ti ti-brand-x" style="font-size: 16px; color: #1d9bf0;"></i>
+            </div>
+            <div>
+              <p style="font-size: 13px; color: #e2e8f0; font-weight: 500; margin: 0 0 2px;">X / Twitter</p>
+              <p class="font-mono" style="font-size: 11px; color: #4b5563; margin: 0;">@kelvinlima</p>
+            </div>
+          </a>
+
+          <!-- Curriculum -->
+          <a
+            href="/cv.pdf"
+            class="social-card flex flex-col transition-all duration-200"
+            style="gap: 8px; background: #041a10; border: 1px solid #22c55e30; border-radius: 10px; padding: 16px; text-decoration: none; --hover-border: #22c55e;"
+          >
+            <div class="flex items-center justify-center" style="width: 32px; height: 32px; background: #22c55e20; border-radius: 8px;">
+              <i class="ti ti-file-cv" style="font-size: 16px; color: #22c55e;"></i>
+            </div>
+            <div>
+              <p style="font-size: 13px; color: #e2e8f0; font-weight: 500; margin: 0 0 2px;">Curriculum</p>
+              <p class="font-mono" style="font-size: 11px; color: #4b5563; margin: 0;">Download PDF</p>
+            </div>
+          </a>
+
+        </div>
       </div>
     </div>
   </section>

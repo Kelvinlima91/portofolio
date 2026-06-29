@@ -71,6 +71,29 @@ body {
   color: #e8e6e0 !important;
 }
 
+/* Stack card hover — uses --card-accent set per card */
+.stack-card:hover {
+  border-color: color-mix(in srgb, var(--card-accent) 60%, transparent) !important;
+}
+
+/* Social card hover — uses --hover-border set per card */
+.social-card:hover {
+  border-color: var(--hover-border) !important;
+}
+
+/* Contact email button hover */
+.contact-email-btn:hover {
+  border-color: #0ea5e9 !important;
+}
+
+/* Stack grid — tablet/mobile breakdowns */
+@media (max-width: 768px) {
+  .stack-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 480px) {
+  .stack-grid { grid-template-columns: 1fr !important; }
+}
+
 /* Badge slide-in animations */
 @keyframes badge-from-left {
   from { opacity: 0; transform: translateX(-16px); }
