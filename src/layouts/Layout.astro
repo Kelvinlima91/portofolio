@@ -99,45 +99,7 @@ const {
 
 <script>
   import Alpine from 'alpinejs';
-
-  const translations = {
-    pt: {
-      available: 'Disponível para projectos',
-      hero_tagline: 'Software developer a construir produtos digitais para Cabo Verde',
-      cta_projects: 'Ver projectos',
-      cta_cv: 'CV',
-      nav_about: 'Sobre',
-      nav_projects: 'Projetos',
-      nav_education: 'Educação',
-      nav_contact: 'Contacto',
-      section_projects: 'Projectos seleccionados',
-      section_education: 'Educação',
-      section_stack: 'Stack técnica',
-      section_contact: 'Contacto',
-      contact_tagline: 'Tens um projecto em mente? Fala comigo.',
-      diploma_badge: 'Diploma obtido',
-      featured_tag: 'Destaque',
-    },
-    en: {
-      available: 'Available for projects',
-      hero_tagline: 'Software developer building digital products for Cabo Verde',
-      cta_projects: 'View projects',
-      cta_cv: 'CV',
-      nav_about: 'About',
-      nav_projects: 'Projects',
-      nav_education: 'Education',
-      nav_contact: 'Contact',
-      section_projects: 'Selected projects',
-      section_education: 'Education',
-      section_stack: 'Tech stack',
-      section_contact: 'Contact',
-      contact_tagline: "Have a project in mind? Let's talk.",
-      diploma_badge: 'Degree obtained',
-      featured_tag: 'Featured',
-    },
-  } as const;
-
-  type Lang = keyof typeof translations;
+  import { translations, type Lang } from '../data/i18n';
 
   document.addEventListener('alpine:init', () => {
     Alpine.data('portfolio', () => ({
