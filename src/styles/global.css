@@ -22,7 +22,14 @@
   --color-tag-bg:     #0f1320;
   --color-text-code:  #0ea5e9;
   --color-monitor-bg: #080b12;   /* always-dark — it's a screen */
-  --color-nav-bg:     rgba(8, 11, 18, 0.75);
+  --color-nav-bg:        rgba(8, 11, 18, 0.75);
+  --color-terminal-bg:   #0d1117;
+  --color-terminal-bar:  #161b22;
+  --color-terminal-border: #1e2538;
+  --color-terminal-shadow: 0 0 40px #0ea5e920;
+  --color-glow:          #0ea5e918;
+  --color-term-prompt:   #22c55e;
+  --color-term-accent:   #0ea5e9;
 
   /* Timeline node backgrounds — dark mode */
   --color-node-blue:   #0a1628;
@@ -69,8 +76,15 @@ html:not(.dark) {
   --color-tag-bg:         #e2e8f0;
   --color-text-code:      #0369a1;
 
-  /* Nav */
-  --color-nav-bg:         rgba(248, 250, 252, 0.85);
+  /* Nav + terminal */
+  --color-nav-bg:          rgba(248, 250, 252, 0.85);
+  --color-terminal-bg:     #ffffff;
+  --color-terminal-bar:    #f8fafc;
+  --color-terminal-border: #e2e8f0;
+  --color-terminal-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  --color-glow:            #0ea5e922;
+  --color-term-prompt:     #16a34a;
+  --color-term-accent:     #0369a1;
 
   /* Timeline nodes — light tints of each accent hue */
   --color-node-blue:      #e0f2fe;
@@ -157,23 +171,3 @@ html:not(.dark) .stack-card {
   .stack-grid { grid-template-columns: 1fr !important; }
 }
 
-/* Badge slide-in animations */
-@keyframes badge-from-left {
-  from { opacity: 0; transform: translateX(-16px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes badge-from-right {
-  from { opacity: 0; transform: translateX(16px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-.badge-left {
-  opacity: 0;
-  animation: badge-from-left 0.5s ease forwards;
-}
-
-.badge-right {
-  opacity: 0;
-  animation: badge-from-right 0.5s ease forwards;
-}
