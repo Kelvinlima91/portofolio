@@ -1,0 +1,172 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Kelvin Lima — Software Developer',
+  description = 'Software developer from Mindelo, Cabo Verde, building digital products for the Cape Verdean market and beyond.',
+  ogImage = '/og.png',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tabler Icons webfont -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
+    />
+
+    <!-- Dark mode + i18n init (runs before first paint to avoid flash) -->
+    <script is:inline>
+      (function () {
+        // Dark mode: default dark, persisted in localStorage
+        const stored = localStorage.getItem('theme');
+        if (stored === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+
+        // Lang: default 'pt', persisted in localStorage
+        const lang = localStorage.getItem('lang') || 'pt';
+        document.documentElement.lang = lang;
+      })();
+    </script>
+  </head>
+
+  <body
+    class="bg-bg-dark text-text-primary min-h-screen"
+    x-data="portfolio()"
+    x-init="init()"
+  >
+    <slot />
+
+    <!-- Intersection Observer for section fade-ins -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function () {
+        const observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        document.querySelectorAll('.fade-in').forEach(function (el) {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<script>
+  import Alpine from 'alpinejs';
+
+  const translations = {
+    pt: {
+      available: 'Disponível para projectos',
+      hero_tagline: 'Software developer a construir produtos digitais para Cabo Verde',
+      cta_projects: 'Ver projectos',
+      cta_cv: 'CV',
+      nav_about: 'Sobre',
+      nav_projects: 'Projetos',
+      nav_education: 'Educação',
+      nav_contact: 'Contacto',
+      section_projects: 'Projectos seleccionados',
+      section_education: 'Educação',
+      section_stack: 'Stack técnica',
+      section_contact: 'Contacto',
+      contact_tagline: 'Tens um projecto em mente? Fala comigo.',
+      diploma_badge: 'Diploma obtido',
+      featured_tag: 'Destaque',
+    },
+    en: {
+      available: 'Available for projects',
+      hero_tagline: 'Software developer building digital products for Cabo Verde',
+      cta_projects: 'View projects',
+      cta_cv: 'CV',
+      nav_about: 'About',
+      nav_projects: 'Projects',
+      nav_education: 'Education',
+      nav_contact: 'Contact',
+      section_projects: 'Selected projects',
+      section_education: 'Education',
+      section_stack: 'Tech stack',
+      section_contact: 'Contact',
+      contact_tagline: "Have a project in mind? Let's talk.",
+      diploma_badge: 'Degree obtained',
+      featured_tag: 'Featured',
+    },
+  } as const;
+
+  type Lang = keyof typeof translations;
+
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('portfolio', () => ({
+      dark: true,
+      lang: 'pt' as Lang,
+      t: translations['pt'],
+
+      init() {
+        const storedTheme = localStorage.getItem('theme');
+        this.dark = storedTheme !== 'light';
+
+        const storedLang = (localStorage.getItem('lang') as Lang) || 'pt';
+        this.lang = storedLang;
+        this.t = translations[this.lang];
+      },
+
+      toggleDark() {
+        this.dark = !this.dark;
+        const theme = this.dark ? 'dark' : 'light';
+        localStorage.setItem('theme', theme);
+        document.documentElement.classList.toggle('dark', this.dark);
+      },
+
+      toggleLang() {
+        this.lang = this.lang === 'pt' ? 'en' : 'pt';
+        localStorage.setItem('lang', this.lang);
+        this.t = translations[this.lang];
+        document.documentElement.lang = this.lang;
+      },
+    }));
+  });
+</script>
