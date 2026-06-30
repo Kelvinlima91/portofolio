@@ -6,95 +6,58 @@
 @theme {
   /* Fonts */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Fraunces", ui-serif, Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   /* Background — dark mode defaults */
-  --color-bg-dark:    #080b12;
-  --color-bg-panel:   #0d1117;
-  --color-bg-card:    #0c0f1a;
+  --color-bg-dark:    #0d1117;
+  --color-bg-panel:   #161b22;
+  --color-bg-card:    #0d1117;
 
   /* Semantic surface tokens — dark mode defaults */
-  --color-card-bg:    #0c0f1a;
-  --color-card-border:#1a1e2e;
-  --color-card-hover: #0ea5e960;
-  --color-panel-bg:   #0a1628;   /* always-dark design accent panel */
-  --color-tag-bg:     #0f1320;
-  --color-text-code:  #0ea5e9;
-  --color-monitor-bg: #080b12;   /* always-dark — it's a screen */
-  --color-nav-bg:        rgba(8, 11, 18, 0.75);
-  --color-terminal-bg:   #0d1117;
-  --color-terminal-bar:  #161b22;
-  --color-terminal-border: #1e2538;
-  --color-terminal-shadow: 0 0 40px #0ea5e920;
-  --color-glow:          #0ea5e918;
-  --color-term-prompt:   #22c55e;
-  --color-term-accent:   #0ea5e9;
+  --color-card-bg:     #161b22;
+  --color-card-border: #30363d;
+  --color-card-hover:  #58a6ff80;
+  --color-tag-bg:      #0f1320;
+  --color-text-code:   #58a6ff;
+  --color-nav-bg:      rgba(13, 17, 23, 0.85);
 
-  /* Timeline node backgrounds — dark mode */
-  --color-node-blue:   #0a1628;
-  --color-node-purple: #0f0a1f;
-  --color-node-amber:  #1a1204;
-  --color-node-green:  #041a10;
-
-  /* Accents (same in both modes) */
-  --color-accent:        #0ea5e9;
-  --color-accent-green:  #22c55e;
-  --color-accent-amber:  #f59e0b;
-  --color-accent-purple: #a78bfa;
+  /* Accents */
+  --color-accent:        #58a6ff;
+  --color-accent-green:  #3fb950;
+  --color-accent-amber:  #d29922;
+  --color-accent-purple: #bc8cff;
+  --color-accent-orange: #f78166;
 
   /* Borders — dark mode defaults */
-  --color-border:        #1a1e2e;
-  --color-border-strong: #1e2538;
+  --color-border:        #30363d;
+  --color-border-strong: #444c56;
 
   /* Text — dark mode defaults */
-  --color-text-primary: #e8e6e0;
-  --color-text-muted:   #6b7280;
-  --color-text-subtle:  #4b5563;
+  --color-text-primary: #e6edf3;
+  --color-text-muted:   #8b949e;
+  --color-text-subtle:  #6e7681;
 }
 
-/* ── Light mode overrides ──────────────────────────────────
-   Applied when .dark is absent from <html>.
-   Overrides the CSS custom properties so every element that
-   uses var(--color-*) automatically gets light values.
-───────────────────────────────────────────────────────── */
+/* ── Light mode overrides ── */
 html:not(.dark) {
-  /* Backgrounds */
-  --color-bg-dark:        #f8fafc;  /* page bg — soft slate, not pure white */
-  --color-bg-panel:       #f1f5f9;
+  --color-bg-dark:        #ffffff;
+  --color-bg-panel:       #f6f8fa;
   --color-bg-card:        #ffffff;
-  --color-border:         #e2e8f0;
-  --color-border-strong:  #cbd5e1;
-  --color-text-primary:   #0f172a;
-  --color-text-muted:     #475569;
-  --color-text-subtle:    #64748b;  /* readable medium grey */
-
-  /* Semantic surface tokens */
+  --color-border:         #d0d7de;
+  --color-border-strong:  #afb8c1;
+  --color-text-primary:   #24292f;
+  --color-text-muted:     #57606a;
+  --color-text-subtle:    #6e7781;
   --color-card-bg:        #ffffff;
-  --color-card-border:    #cbd5e1;  /* slate-300 — more visible on white */
-  --color-card-hover:     #0ea5e940;
-  --color-tag-bg:         #e2e8f0;
-  --color-text-code:      #0369a1;
-
-  /* Nav + terminal */
-  --color-nav-bg:          rgba(248, 250, 252, 0.85);
-  --color-terminal-bg:     #ffffff;
-  --color-terminal-bar:    #f8fafc;
-  --color-terminal-border: #e2e8f0;
-  --color-terminal-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
-  --color-glow:            #0ea5e922;
-  --color-term-prompt:     #16a34a;
-  --color-term-accent:     #0369a1;
-
-  /* Timeline nodes — light tints of each accent hue */
-  --color-node-blue:      #e0f2fe;
-  --color-node-purple:    #f3e8ff;
-  --color-node-amber:     #fef3c7;
-  --color-node-green:     #dcfce7;
-
-  /* panel-bg and monitor-bg intentionally NOT overridden —
-     the hero right panel and monitor screen stay dark in both modes
-     (they are design accent elements, not content areas)            */
+  --color-card-border:    #d0d7de;
+  --color-card-hover:     #0969da80;
+  --color-tag-bg:         #e6f4ff;
+  --color-text-code:      #0969da;
+  --color-nav-bg:         rgba(255, 255, 255, 0.85);
+  --color-accent:         #0969da;
+  --color-accent-green:   #1a7f37;
+  --color-accent-amber:   #9a6700;
+  --color-accent-purple:  #8250df;
 }
 
 html {
@@ -109,65 +72,125 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Fade-in animation for sections */
+/* ── Dot grid background ── */
+.dot-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(#30363d 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  opacity: 0.6;
+}
+html:not(.dark) .dot-grid {
+  background-image: radial-gradient(#e1e4e8 1px, transparent 1px);
+}
+
+/* ── Fade-in animation for sections ── */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
-
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Blinking cursor for hero monitor */
+/* ── GitHub-style scrollbar ── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background-color: #30363d; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background-color: #8b949e; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background-color: #d0d7de; }
+html:not(.dark) ::-webkit-scrollbar-thumb:hover { background-color: #afb8c1; }
+
+/* ── Contribution bar segment ── */
+.contrib-seg {
+  background-color: var(--seg-dark);
+  transition: opacity 0.15s;
+}
+html:not(.dark) .contrib-seg {
+  background-color: var(--seg-light);
+}
+
+/* ── Education collapsible drawer ── */
+.edu-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+.edu-drawer.open {
+  grid-template-rows: 1fr;
+}
+.edu-drawer > div {
+  overflow: hidden;
+}
+
+/* ── Ping animation for status dot ── */
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+.animate-ping {
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ── Blinking cursor ── */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
 }
 
-.cursor-blink {
-  animation: blink 1s step-end infinite;
+/* ── Nav tab active indicator ── */
+.nav-tab-active {
+  border-bottom: 2px solid #f78166;
+  color: var(--color-text-primary) !important;
+  font-weight: 600;
 }
 
-/* Project card hover */
-.project-card:hover {
-  border-color: rgba(14, 165, 233, 0.38) !important;
+/* ── Project card hover ── */
+.repo-card {
+  transition: border-color 0.2s ease;
+}
+.repo-card:hover {
+  border-color: rgba(88, 166, 255, 0.5) !important;
 }
 
-/* Light mode card elevation */
-html:not(.dark) .project-card,
-html:not(.dark) .stack-card {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+/* ── Stack item hover in JSON viewer ── */
+.stack-json-item {
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 0 2px;
+  transition: background-color 0.15s, color 0.15s;
+}
+.stack-json-item:hover {
+  color: #e6edf3;
+}
+html:not(.dark) .stack-json-item:hover {
+  color: #24292f;
+}
+.stack-json-item.active {
+  background-color: rgba(88, 166, 255, 0.15);
+  border: 1px solid rgba(88, 166, 255, 0.4);
+  color: #58a6ff;
+  font-weight: 700;
+}
+html:not(.dark) .stack-json-item.active {
+  background-color: rgba(9, 105, 218, 0.1);
+  border-color: rgba(9, 105, 218, 0.4);
+  color: #0969da;
 }
 
-/* Contact link hover */
-.contact-link:hover {
-  border-color: #0ea5e9 !important;
-  color: #e8e6e0 !important;
+/* ── Contact tab active ── */
+.contact-tab-active {
+  border-bottom: 2px solid var(--color-accent-orange);
+  color: var(--color-text-primary) !important;
 }
 
-/* Stack card hover — uses --card-accent set per card */
-.stack-card:hover {
-  border-color: color-mix(in srgb, var(--card-accent) 60%, transparent) !important;
+/* ── Light mode card elevation ── */
+html:not(.dark) .card-elevated {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
 }
-
-/* Social card hover — uses --hover-border set per card */
-.social-card:hover {
-  border-color: var(--hover-border) !important;
-}
-
-/* Contact email button hover */
-.contact-email-btn:hover {
-  border-color: #0ea5e9 !important;
-}
-
-/* Stack grid — tablet/mobile breakdowns */
-@media (max-width: 768px) {
-  .stack-grid { grid-template-columns: repeat(2, 1fr) !important; }
-}
-@media (max-width: 480px) {
-  .stack-grid { grid-template-columns: 1fr !important; }
-}
-

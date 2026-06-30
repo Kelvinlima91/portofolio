@@ -1,0 +1,162 @@
+export const PERSONAL_INFO = {
+  name: 'Kelvin Lima',
+  username: 'kelvinlima91',
+  tagline: {
+    pt: 'Software developer a construir produtos digitais para Cabo Verde',
+    en: 'Software developer building digital products for Cabo Verde',
+  },
+  bio: {
+    pt: 'Developer apaixonado por criar produtos digitais para o mercado cabo-verdiano. Especializado em Laravel, Alpine.js e Tailwind CSS v4. Formado em Engenharia de Sistemas e Informática pela Universidade Jean Piaget de Cabo Verde.',
+    en: 'Developer passionate about creating digital products for the Cape Verdean market. Specialized in Laravel, Alpine.js and Tailwind CSS v4. Graduated in Systems and Computer Engineering from Universidade Jean Piaget de Cabo Verde.',
+  },
+  location: 'Mindelo, Cabo Verde',
+  email: 'hello@kelvinlima.dev',
+  website: 'kelvinlima.dev',
+};
+
+export const PROJECTS = [
+  {
+    id: 'omenu-cv',
+    name: 'O Menu CV',
+    descriptionPt: 'Plataforma de descoberta de restaurantes e pré-encomenda de refeições para Cabo Verde.',
+    descriptionEn: 'Restaurant discovery and meal pre-ordering platform for Cabo Verde.',
+    stack: ['Laravel 12', 'Alpine.js', 'Tailwind v4', 'Pest PHP'],
+    language: 'PHP',
+    stars: 12,
+    forks: 3,
+    githubUrl: 'https://github.com/Kelvinlima91/o-menu-cv',
+    demoUrl: null,
+    pinned: true,
+    tagPt: 'Destaque',
+    tagEn: 'Featured',
+  },
+  {
+    id: 'reklama',
+    name: 'Reklama',
+    descriptionPt: 'Portal eletrónico de reclamações de consumidores com dashboards para utilizadores, empresas e reguladores.',
+    descriptionEn: 'Electronic consumer complaints portal with dashboards for users, companies, and regulators.',
+    stack: ['Laravel', 'AJAX', 'MySQL'],
+    language: 'PHP',
+    stars: 8,
+    forks: 2,
+    githubUrl: 'https://github.com/Kelvinlima91/reklama',
+    demoUrl: null,
+    pinned: true,
+    tagPt: 'Regulação',
+    tagEn: 'Regulation',
+  },
+  {
+    id: 'portal-vagas-cv',
+    name: 'Portal de Vagas CV',
+    descriptionPt: 'Portal de emprego com três perfis (Candidato, Empresa, Admin) e ciclo de moderação de vagas.',
+    descriptionEn: 'Job portal with three profiles (Candidate, Company, Admin) and a vacancy moderation cycle.',
+    stack: ['Laravel 12', 'Tailwind v4'],
+    language: 'PHP',
+    stars: 5,
+    forks: 1,
+    githubUrl: 'https://github.com/Kelvinlima91/portal-vagas-cv',
+    demoUrl: null,
+    pinned: true,
+    tagPt: 'Emprego',
+    tagEn: 'Employment',
+  },
+];
+
+export const EDUCATION = [
+  {
+    id: 'piaget-graduation',
+    titlePt: 'Licenciatura concluída',
+    titleEn: 'Degree completed',
+    institutionPt: 'Universidade Jean Piaget de Cabo Verde',
+    institutionEn: 'Universidade Jean Piaget de Cabo Verde',
+    period: 'Jun 2024',
+    year: '2024',
+    prNumber: '5',
+    descriptionPt: 'Engenharia de Sistemas e Informática — conclusão com distinção. Licenciatura de 4 anos com foco em desenvolvimento de software, bases de dados e sistemas de informação.',
+    descriptionEn: 'Systems and Computer Engineering — completed with distinction. 4-year degree focused on software development, databases and information systems.',
+    modules: [],
+  },
+  {
+    id: 'piaget-final',
+    titlePt: 'Projecto final',
+    titleEn: 'Final project',
+    institutionPt: 'Universidade Jean Piaget de Cabo Verde',
+    institutionEn: 'Universidade Jean Piaget de Cabo Verde',
+    period: '2023',
+    year: '2023',
+    prNumber: '4',
+    descriptionPt: 'Desenvolvimento da plataforma lroOnline (Reklama) como TCC. Portal eletrónico de reclamações de consumidores com sistema de dashboards multi-nível.',
+    descriptionEn: 'Development of lroOnline (Reklama) as the final thesis. Electronic consumer complaints portal with multi-level dashboard system.',
+    modules: [],
+  },
+  {
+    id: 'piaget-webdev',
+    titlePt: 'Desenvolvimento web',
+    titleEn: 'Web development',
+    institutionPt: 'Universidade Jean Piaget de Cabo Verde',
+    institutionEn: 'Universidade Jean Piaget de Cabo Verde',
+    period: '2022',
+    year: '2022',
+    prNumber: '3',
+    descriptionPt: 'Primeiros projectos Laravel, foco em produtos para o mercado cabo-verdiano. Aprendizagem de frameworks MVC e desenvolvimento full-stack.',
+    descriptionEn: 'First Laravel projects, focus on the Cape Verdean market. Learning MVC frameworks and full-stack development.',
+    modules: [],
+  },
+  {
+    id: 'piaget-fundamentals',
+    titlePt: 'Fundamentos',
+    titleEn: 'Fundamentals',
+    institutionPt: 'Universidade Jean Piaget de Cabo Verde',
+    institutionEn: 'Universidade Jean Piaget de Cabo Verde',
+    period: '2021',
+    year: '2021',
+    prNumber: '2',
+    descriptionPt: 'Algoritmos, bases de dados, POO, redes de computadores. Fundamentos sólidos em ciência da computação e matemática aplicada.',
+    descriptionEn: 'Algorithms, databases, OOP, computer networks. Solid foundations in computer science and applied mathematics.',
+    modules: [],
+  },
+  {
+    id: 'piaget-start',
+    titlePt: 'Início da Licenciatura',
+    titleEn: 'Start of degree',
+    institutionPt: 'Universidade Jean Piaget de Cabo Verde, Pólo do Mindelo',
+    institutionEn: 'Universidade Jean Piaget de Cabo Verde, Mindelo Campus',
+    period: 'Out 2020',
+    year: '2020',
+    prNumber: '1',
+    descriptionPt: 'Início do percurso académico em Engenharia de Sistemas e Informática. Integração na vida universitária e primeiros contactos com programação estruturada.',
+    descriptionEn: 'Start of the academic journey in Systems and Computer Engineering. Integration into university life and first contacts with structured programming.',
+    modules: [],
+  },
+];
+
+export const STACK = [
+  { category: 'backend', items: ['php@8.2', 'Laravel'] },
+  { category: 'frontend', items: ['Alpine.js', 'Tailwind CSS v4'] },
+  { category: 'testes', items: ['Pest PHP'] },
+  { category: 'database', items: ['MySQL', 'SQLite'] },
+  { category: 'devops', items: ['Git', 'GitHub'] },
+];
+
+export const TECH_DETAILS = {
+  'php@8.2': 'Backend principal para todos os projectos. Versão 8.2 com suporte a fibers e readonly properties.',
+  'Laravel': 'Framework PHP principal. Usado no O Menu CV, Reklama e Portal de Vagas CV.',
+  'Alpine.js': 'Interactividade leve no frontend. Sem overhead de SPA frameworks.',
+  'Tailwind CSS v4': 'Utility-first CSS com design tokens. V4 usa CSS nativo sem PostCSS.',
+  'Pest PHP': '107+ testes escritos. Framework elegante para TDD em PHP.',
+  'MySQL': 'Base de dados principal em produção para todos os projectos.',
+  'SQLite': 'Base de dados leve para desenvolvimento local e testes.',
+  'Git': 'Versionamento de código com branches e commits convencionais.',
+  'GitHub': 'Repositórios remotos, colaboração e CI/CD pipelines.',
+};
+
+export const CONTRIB_PATTERN = [2,3,1,4,3,2,0,1,3,4,2,3,0,1,2,3,4,1,2,3,4,0,2,3,4,1,2,3,0,4,2,3,1,4,3,2,0,1,3,4,2,3,0,1,2,3,4,1,2,3,4,0,2,3,4,1,2,3,0,4];
+export const CONTRIB_COLORS_DARK = ['#161b22','#0e4429','#006d32','#26a641','#39d353'];
+export const CONTRIB_COLORS_LIGHT = ['#ebedf0','#9be9a8','#40c463','#30a14e','#216e39'];
+
+export const CONTRIB_MARKERS = [
+  { posPercent: 8,  namePt: 'O Menu CV',          nameEn: 'O Menu CV',          datePt: 'iniciado em Julho 2024',    dateEn: 'started in July 2024' },
+  { posPercent: 35, namePt: 'Reklama (lroOnline)', nameEn: 'Reklama (lroOnline)', datePt: 'iniciado em Novembro 2024', dateEn: 'started in November 2024' },
+  { posPercent: 62, namePt: 'Portal de Vagas CV',  nameEn: 'Portal de Vagas CV',  datePt: 'iniciado em Março 2025',   dateEn: 'started in March 2025' },
+  { posPercent: 88, namePt: 'Portfolio pessoal',   nameEn: 'Portfolio pessoal',   datePt: 'iniciado em Junho 2025',   dateEn: 'started in June 2025' },
+];
