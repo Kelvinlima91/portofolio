@@ -12,6 +12,14 @@ const {
   description = 'Software developer from Mindelo, Cabo Verde, building digital products for the Cape Verdean market and beyond.',
   ogImage = '/og.png',
 } = Astro.props;
+
+const navTabs = [
+  { key: 'nav_home',      href: '#home',      pt: 'Início',    en: 'Home'      },
+  { key: 'nav_projects',  href: '#projects',  pt: 'Projectos', en: 'Projects'  },
+  { key: 'nav_education', href: '#education', pt: 'Educação',  en: 'Education' },
+  { key: 'nav_stack',     href: '#stack',     pt: 'Stack',     en: 'Stack'     },
+  { key: 'nav_contact',   href: '#contact',   pt: 'Contacto',  en: 'Contact'   },
+];
 ---
 
 <!doctype html>
@@ -35,11 +43,11 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Inter + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=JetBrains+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
 
@@ -52,15 +60,12 @@ const {
     <!-- Dark mode + i18n init (runs before first paint to avoid flash) -->
     <script is:inline>
       (function () {
-        // Dark mode: default dark, persisted in localStorage
         const stored = localStorage.getItem('theme');
         if (stored === 'light') {
           document.documentElement.classList.remove('dark');
         } else {
           document.documentElement.classList.add('dark');
         }
-
-        // Lang: default 'pt', persisted in localStorage
         const lang = localStorage.getItem('lang') || 'pt';
         document.documentElement.lang = lang;
       })();
@@ -68,30 +73,155 @@ const {
   </head>
 
   <body
-    class="bg-bg-dark text-text-primary min-h-screen"
+    class="min-h-screen"
+    style="background-color: var(--color-bg-dark); color: var(--color-text-primary);"
     x-data="portfolio()"
     x-init="init()"
   >
-    <slot />
+    <!-- Fixed dot grid background -->
+    <div class="dot-grid" aria-hidden="true"></div>
 
-    <!-- Intersection Observer for section fade-ins -->
+    <!-- ══════════════════════════════════════
+         GITHUB-STYLE STICKY NAV
+    ══════════════════════════════════════ -->
+    <header
+      class="fixed top-0 inset-x-0 z-50"
+      style="background-color: var(--color-nav-bg); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border);"
+    >
+      <!-- Main nav row -->
+      <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
+
+        <!-- Left: avatar + label -->
+        <a href="/" class="flex items-center gap-2 flex-shrink-0 no-underline">
+          <div
+            class="w-8 h-8 rounded-full flex items-center justify-center font-mono font-bold text-xs flex-shrink-0"
+            style="background-color: var(--color-bg-panel); border: 1px solid var(--color-border); color: var(--color-accent);"
+          >
+            &lt;//&gt;
+          </div>
+          <span
+            class="hidden sm:inline font-mono text-sm"
+            style="color: var(--color-text-primary);"
+          >kelvinlima <span style="color: var(--color-text-muted);">/</span> portfolio</span>
+        </a>
+
+        <!-- Center: tab links (desktop only) -->
+        <nav class="hidden md:flex items-end h-full gap-0" aria-label="Main navigation">
+          {navTabs.map((tab) => (
+            <a
+              href={tab.href}
+              class="nav-tab px-4 h-14 flex items-center text-sm transition-colors duration-150 border-b-2 border-transparent"
+              style="color: var(--color-text-muted);"
+              data-section={tab.href.slice(1)}
+              x-text={`lang === 'pt' ? '${tab.pt}' : '${tab.en}'`}
+            >
+              {tab.pt}
+            </a>
+          ))}
+        </nav>
+
+        <!-- Right: lang toggle + theme toggle -->
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <!-- PT / EN pill -->
+          <div
+            class="flex items-center rounded-full p-0.5 text-xs font-mono"
+            style="background-color: var(--color-bg-panel); border: 1px solid var(--color-border);"
+          >
+            <button
+              @click="toggleLang()"
+              class="px-2.5 py-1 rounded-full transition-all duration-150 cursor-pointer text-xs font-mono"
+              :style="lang === 'pt' ? 'color: var(--color-accent); border: 1px solid var(--color-accent); background: transparent;' : 'color: var(--color-text-muted); border: 1px solid transparent;'"
+              aria-label="Mudar para Português"
+            >PT</button>
+            <button
+              @click="toggleLang()"
+              class="px-2.5 py-1 rounded-full transition-all duration-150 cursor-pointer text-xs font-mono"
+              :style="lang === 'en' ? 'color: var(--color-accent); border: 1px solid var(--color-accent); background: transparent;' : 'color: var(--color-text-muted); border: 1px solid transparent;'"
+              aria-label="Switch to English"
+            >EN</button>
+          </div>
+
+          <!-- Dark / Light toggle -->
+          <button
+            @click="toggleDark()"
+            class="w-8 h-8 flex items-center justify-center rounded-md transition-colors duration-150 cursor-pointer"
+            style="border: 1px solid var(--color-border); color: var(--color-text-muted);"
+            aria-label="Toggle dark mode"
+          >
+            <i class="ti text-sm leading-none" :class="dark ? 'ti-sun' : 'ti-moon'"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile: scrollable tab bar below main row -->
+      <div
+        class="md:hidden flex overflow-x-auto gap-0 px-2"
+        style="border-top: 1px solid var(--color-border); scrollbar-width: none;"
+      >
+        {navTabs.map((tab) => (
+          <a
+            href={tab.href}
+            class="nav-tab flex-shrink-0 px-3 py-2 text-xs transition-colors duration-150 border-b-2 border-transparent"
+            style="color: var(--color-text-muted);"
+            data-section={tab.href.slice(1)}
+            x-text={`lang === 'pt' ? '${tab.pt}' : '${tab.en}'`}
+          >
+            {tab.pt}
+          </a>
+        ))}
+      </div>
+    </header>
+
+    <!-- Page content (slot) — extra top on mobile to clear two-row nav -->
+    <div class="relative z-10 pt-24 md:pt-14">
+      <slot />
+    </div>
+
+    <!-- Intersection Observer: section fade-ins + nav active state -->
     <script is:inline>
       document.addEventListener('DOMContentLoaded', function () {
-        const observer = new IntersectionObserver(
+        // Fade-in observer
+        const fadeObserver = new IntersectionObserver(
           function (entries) {
             entries.forEach(function (entry) {
               if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+                fadeObserver.unobserve(entry.target);
               }
             });
           },
-          { threshold: 0.1 }
+          { threshold: 0.08 }
         );
-
         document.querySelectorAll('.fade-in').forEach(function (el) {
-          observer.observe(el);
+          fadeObserver.observe(el);
         });
+
+        // Nav active section observer
+        const sections = document.querySelectorAll('section[id]');
+        const navTabs = document.querySelectorAll('.nav-tab');
+
+        function setActive(sectionId) {
+          navTabs.forEach(function (tab) {
+            const tabSection = tab.getAttribute('data-section');
+            if (tabSection === sectionId) {
+              tab.classList.add('nav-tab-active');
+            } else {
+              tab.classList.remove('nav-tab-active');
+            }
+          });
+        }
+
+        const navObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                setActive(entry.target.id);
+              }
+            });
+          },
+          { threshold: 0.3 }
+        );
+        sections.forEach(function (s) { navObserver.observe(s); });
       });
     </script>
   </body>
