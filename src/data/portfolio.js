@@ -2,8 +2,8 @@ export const PERSONAL_INFO = {
   name: 'Kelvin Lima',
   username: 'kelvinlima91',
   tagline: {
-    pt: 'Software developer a construir produtos digitais para Cabo Verde',
-    en: 'Software developer building digital products for Cabo Verde',
+    pt: 'Software developer de Mindelo, Cabo Verde. Construo produtos digitais para o mercado cabo-verdiano com Laravel, Tailwind CSS e Alpine.js.',
+    en: 'Software developer from Mindelo, Cape Verde. I build digital products for the Cape Verdean market with Laravel, Tailwind CSS, and Alpine.js.',
   },
   bio: {
     pt: 'Developer apaixonado por criar produtos digitais para o mercado cabo-verdiano. Especializado em Laravel, Alpine.js e Tailwind CSS v4. Formado em Engenharia de Sistemas e Informática pela Universidade Jean Piaget de Cabo Verde.',
@@ -17,13 +17,14 @@ export const PERSONAL_INFO = {
 export const PROJECTS = [
   {
     id: 'omenu-cv',
-    name: 'O Menu CV',
-    descriptionPt: 'Plataforma de descoberta de restaurantes e pré-encomenda de refeições para Cabo Verde.',
-    descriptionEn: 'Restaurant discovery and meal pre-ordering platform for Cabo Verde.',
+    name: 'o-menu-cv',
+    descriptionPt: 'Plataforma de descoberta de restaurantes e pré-encomenda de refeições para Cabo Verde. 107 testes, dashboard com KPIs em tempo real.',
+    descriptionEn: 'Cape Verde restaurant discovery and meal pre-ordering platform. 107 tests, dashboard with real-time KPIs.',
     stack: ['Laravel 12', 'Alpine.js', 'Tailwind v4', 'Pest PHP'],
     language: 'PHP',
-    stars: 12,
-    forks: 3,
+    languageColor: '#777bb4',
+    stars: 5,
+    forks: 2,
     githubUrl: 'https://github.com/Kelvinlima91/o-menu-cv',
     demoUrl: null,
     pinned: true,
@@ -31,28 +32,14 @@ export const PROJECTS = [
     tagEn: 'Featured',
   },
   {
-    id: 'reklama',
-    name: 'Reklama',
-    descriptionPt: 'Portal eletrónico de reclamações de consumidores com dashboards para utilizadores, empresas e reguladores.',
-    descriptionEn: 'Electronic consumer complaints portal with dashboards for users, companies, and regulators.',
-    stack: ['Laravel', 'AJAX', 'MySQL'],
-    language: 'PHP',
-    stars: 8,
-    forks: 2,
-    githubUrl: 'https://github.com/Kelvinlima91/reklama',
-    demoUrl: null,
-    pinned: true,
-    tagPt: 'Regulação',
-    tagEn: 'Regulation',
-  },
-  {
     id: 'portal-vagas-cv',
-    name: 'Portal de Vagas CV',
+    name: 'portal-vagas-cv',
     descriptionPt: 'Portal de emprego com três perfis (Candidato, Empresa, Admin) e ciclo de moderação de vagas.',
     descriptionEn: 'Job portal with three profiles (Candidate, Company, Admin) and a vacancy moderation cycle.',
     stack: ['Laravel 12', 'Tailwind v4'],
     language: 'PHP',
-    stars: 5,
+    languageColor: '#777bb4',
+    stars: 4,
     forks: 1,
     githubUrl: 'https://github.com/Kelvinlima91/portal-vagas-cv',
     demoUrl: null,
@@ -60,13 +47,29 @@ export const PROJECTS = [
     tagPt: 'Emprego',
     tagEn: 'Employment',
   },
+  {
+    id: 'reklama',
+    name: 'reklama-lroonline',
+    descriptionPt: 'Portal eletrónico de reclamações de consumidores com dashboards para utilizadores, empresas e reguladores.',
+    descriptionEn: 'Electronic consumer complaints portal with dashboards for users, companies, and regulators.',
+    stack: ['Laravel', 'AJAX', 'MySQL'],
+    language: 'PHP',
+    languageColor: '#777bb4',
+    stars: 3,
+    forks: 1,
+    githubUrl: 'https://github.com/Kelvinlima91/reklama',
+    demoUrl: null,
+    pinned: true,
+    tagPt: 'Regulação',
+    tagEn: 'Regulation',
+  },
 ];
 
 export const EDUCATION = [
   {
     id: 'piaget-graduation',
-    titlePt: 'Licenciatura concluída',
-    titleEn: 'Degree completed',
+    titlePt: 'Licenciatura Concluída — v1.0.0 — Diploma',
+    titleEn: 'Degree Completed — v1.0.0 — Diploma',
     institutionPt: 'Universidade Jean Piaget de Cabo Verde',
     institutionEn: 'Universidade Jean Piaget de Cabo Verde',
     period: 'Jun 2024',
@@ -77,9 +80,9 @@ export const EDUCATION = [
     modules: [],
   },
   {
-    id: 'piaget-final',
-    titlePt: 'Projecto final',
-    titleEn: 'Final project',
+    id: 'piaget-tcc',
+    titlePt: 'Trabalho de Fim de Curso — IroOnline (Reklama)',
+    titleEn: 'Final Year Project — IroOnline (Reklama)',
     institutionPt: 'Universidade Jean Piaget de Cabo Verde',
     institutionEn: 'Universidade Jean Piaget de Cabo Verde',
     period: '2023',
@@ -91,8 +94,8 @@ export const EDUCATION = [
   },
   {
     id: 'piaget-webdev',
-    titlePt: 'Desenvolvimento web',
-    titleEn: 'Web development',
+    titlePt: 'Desenvolvimento Web & Projetos Laravel',
+    titleEn: 'Web Development & Laravel Projects',
     institutionPt: 'Universidade Jean Piaget de Cabo Verde',
     institutionEn: 'Universidade Jean Piaget de Cabo Verde',
     period: '2022',
@@ -104,8 +107,8 @@ export const EDUCATION = [
   },
   {
     id: 'piaget-fundamentals',
-    titlePt: 'Fundamentos',
-    titleEn: 'Fundamentals',
+    titlePt: 'Fundamentos de Programação & Bases de Dados',
+    titleEn: 'Programming Fundamentals & Databases',
     institutionPt: 'Universidade Jean Piaget de Cabo Verde',
     institutionEn: 'Universidade Jean Piaget de Cabo Verde',
     period: '2021',
@@ -117,10 +120,10 @@ export const EDUCATION = [
   },
   {
     id: 'piaget-start',
-    titlePt: 'Início da Licenciatura',
-    titleEn: 'Start of degree',
-    institutionPt: 'Universidade Jean Piaget de Cabo Verde, Pólo do Mindelo',
-    institutionEn: 'Universidade Jean Piaget de Cabo Verde, Mindelo Campus',
+    titlePt: 'Início da Licenciatura em Engenharia de Sistemas e Informática',
+    titleEn: 'BSc in Systems and Computer Engineering — Start',
+    institutionPt: 'Universidade Jean Piaget de Cabo Verde',
+    institutionEn: 'Jean Piaget University of Cape Verde',
     period: 'Out 2020',
     year: '2020',
     prNumber: '1',
@@ -131,23 +134,79 @@ export const EDUCATION = [
 ];
 
 export const STACK = [
-  { category: 'backend', items: ['php@8.2', 'Laravel'] },
-  { category: 'frontend', items: ['Alpine.js', 'Tailwind CSS v4'] },
-  { category: 'testes', items: ['Pest PHP'] },
-  { category: 'database', items: ['MySQL', 'SQLite'] },
-  { category: 'devops', items: ['Git', 'GitHub'] },
+  {
+    key: 'backend',
+    labelPt: 'Backend',
+    labelEn: 'Backend',
+    items: ['PHP', 'Laravel'],
+  },
+  {
+    key: 'frontend',
+    labelPt: 'Frontend',
+    labelEn: 'Frontend',
+    items: ['Tailwind CSS', 'Alpine.js'],
+  },
+  {
+    key: 'testing',
+    labelPt: 'Testes',
+    labelEn: 'Testing',
+    items: ['Pest PHP'],
+  },
+  {
+    key: 'database',
+    labelPt: 'Base de Dados',
+    labelEn: 'Database',
+    items: ['MySQL', 'SQLite'],
+  },
+  {
+    key: 'tools',
+    labelPt: 'Ferramentas',
+    labelEn: 'Tools',
+    items: ['Git', 'GitHub', 'Vite'],
+  },
 ];
 
 export const TECH_DETAILS = {
-  'php@8.2': 'Backend principal para todos os projectos. Versão 8.2 com suporte a fibers e readonly properties.',
-  'Laravel': 'Framework PHP principal. Usado no O Menu CV, Reklama e Portal de Vagas CV.',
-  'Alpine.js': 'Interactividade leve no frontend. Sem overhead de SPA frameworks.',
-  'Tailwind CSS v4': 'Utility-first CSS com design tokens. V4 usa CSS nativo sem PostCSS.',
-  'Pest PHP': '107+ testes escritos. Framework elegante para TDD em PHP.',
-  'MySQL': 'Base de dados principal em produção para todos os projectos.',
-  'SQLite': 'Base de dados leve para desenvolvimento local e testes.',
-  'Git': 'Versionamento de código com branches e commits convencionais.',
-  'GitHub': 'Repositórios remotos, colaboração e CI/CD pipelines.',
+  'PHP': {
+    pt: 'Linguagem principal de todos os projectos. Orientação a objectos, tipagem forte com PHP 8.2.',
+    en: 'Main language across all projects. Object-oriented, strongly typed with PHP 8.2.',
+  },
+  'Laravel': {
+    pt: 'Framework MVC principal. Eloquent ORM, migrations, artisan CLI e sistema de filas.',
+    en: 'Main MVC framework. Eloquent ORM, migrations, artisan CLI and queue system.',
+  },
+  'Tailwind CSS': {
+    pt: 'Utility-first CSS. Versão 4 com engine Vite nativa e design tokens via @theme.',
+    en: 'Utility-first CSS. Version 4 with native Vite engine and design tokens via @theme.',
+  },
+  'Alpine.js': {
+    pt: 'Interactividade leve no frontend. Sem overhead de framework pesada, integra com Blade.',
+    en: 'Lightweight frontend interactivity. No heavy framework overhead, integrates with Blade.',
+  },
+  'Pest PHP': {
+    pt: 'Framework de testes elegante. 107+ testes escritos no O Menu CV com sintaxe fluente.',
+    en: 'Elegant testing framework. 107+ tests written in O Menu CV with fluent syntax.',
+  },
+  'MySQL': {
+    pt: 'Base de dados relacional em produção. Usado em todos os projectos em ambiente de produção.',
+    en: 'Relational database in production. Used across all projects in production environments.',
+  },
+  'SQLite': {
+    pt: 'Base de dados em desenvolvimento local. Leve, sem servidor, ideal para testes e dev.',
+    en: 'Local development database. Lightweight, serverless, ideal for testing and development.',
+  },
+  'Git': {
+    pt: 'Controlo de versões. Branches por feature, commits semânticos e histórico limpo.',
+    en: 'Version control. Feature branches, semantic commits and clean history.',
+  },
+  'GitHub': {
+    pt: 'Repositórios remotos, pull requests e code reviews. Todos os projectos estão aqui.',
+    en: 'Remote repositories, pull requests and code reviews. All projects live here.',
+  },
+  'Vite': {
+    pt: 'Bundler ultra-rápido. Integrado nativamente com Tailwind CSS v4 e Laravel.',
+    en: 'Ultra-fast bundler. Natively integrated with Tailwind CSS v4 and Laravel.',
+  },
 };
 
 export const CONTRIB_PATTERN = [2,3,1,4,3,2,0,1,3,4,2,3,0,1,2,3,4,1,2,3,4,0,2,3,4,1,2,3,0,4,2,3,1,4,3,2,0,1,3,4,2,3,0,1,2,3,4,1,2,3,4,0,2,3,4,1,2,3,0,4];

@@ -83,13 +83,13 @@ const eduCount = EDUCATION.length;
 
         <!-- README.md card -->
         <div
-          class="rounded-lg overflow-hidden card-elevated"
-          style="background-color: var(--color-card-bg); border: 1px solid var(--color-border);"
+          class="overflow-hidden card-elevated"
+          style="background-color: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 12px;"
         >
           <!-- Card header bar -->
           <div
-            class="flex items-center justify-between px-4 py-3"
-            style="border-bottom: 1px solid var(--color-border);"
+            class="flex items-center justify-between"
+            style="background-color: var(--color-header-bg); border-bottom: 1px solid var(--color-border); border-radius: 12px 12px 0 0; padding: 10px 16px;"
           >
             <div class="flex items-center gap-2">
               <i class="ti ti-book text-sm" style="color: var(--color-text-muted);"></i>
@@ -118,16 +118,16 @@ const eduCount = EDUCATION.length;
             </div>
 
             <!-- 3-stat row -->
-            <div class="grid grid-cols-3 divide-x" style="border: 1px solid var(--color-border); border-radius: 6px; divide-color: var(--color-border);">
-              <div class="px-4 py-3 text-center">
+            <div class="grid grid-cols-3" style="border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 16px 0;">
+              <div class="px-4 text-center" style="border-right: 1px solid var(--color-border);">
                 <p class="text-2xl font-bold" style="color: var(--color-text-primary);">3</p>
                 <p class="text-xs mt-0.5" style="color: var(--color-text-muted);" x-text="t.home_stat_projects_label">Projectos</p>
               </div>
-              <div class="px-4 py-3 text-center">
+              <div class="px-4 text-center" style="border-right: 1px solid var(--color-border);">
                 <p class="text-2xl font-bold" style="color: var(--color-text-primary);">107+</p>
                 <p class="text-xs mt-0.5" style="color: var(--color-text-muted);" x-text="t.home_stat_tests_label">Testes escritos</p>
               </div>
-              <div class="px-4 py-3 text-center">
+              <div class="px-4 text-center">
                 <p class="text-2xl font-bold" style="color: var(--color-text-primary);">6+</p>
                 <p class="text-xs mt-0.5" style="color: var(--color-text-muted);" x-text="t.home_stat_years_label">Anos de código</p>
               </div>
@@ -135,8 +135,8 @@ const eduCount = EDUCATION.length;
 
             <!-- Pinned commit -->
             <div
-              class="flex items-center gap-3 px-3 py-2 rounded-md font-mono text-sm"
-              style="background-color: var(--color-bg-panel); border: 1px solid var(--color-border);"
+              class="flex items-center gap-3 font-mono text-sm"
+              style="background-color: var(--color-bg-inset); border: 1px solid var(--color-border); border-radius: 8px; padding: 10px 14px; margin: 4px 0;"
             >
               <i class="ti ti-git-commit text-sm flex-shrink-0" style="color: var(--color-text-muted);"></i>
               <span class="text-xs" style="color: var(--color-text-muted);">a3f29e1</span>
@@ -153,8 +153,7 @@ const eduCount = EDUCATION.length;
 
               <!-- Focus card -->
               <div
-                class="rounded-md p-4"
-                style="background-color: var(--color-bg-panel); border: 1px solid var(--color-border);"
+                style="background-color: var(--color-bg-inset); border: 1px solid var(--color-border); border-radius: 8px; padding: 14px 16px;"
               >
                 <div class="flex items-center gap-2 mb-3">
                   <i class="ti ti-target text-sm" style="color: var(--color-accent);"></i>
@@ -178,8 +177,7 @@ const eduCount = EDUCATION.length;
 
               <!-- Learning card -->
               <div
-                class="rounded-md p-4"
-                style="background-color: var(--color-bg-panel); border: 1px solid var(--color-border);"
+                style="background-color: var(--color-bg-inset); border: 1px solid var(--color-border); border-radius: 8px; padding: 14px 16px;"
               >
                 <div class="flex items-center gap-2 mb-3">
                   <i class="ti ti-school text-sm" style="color: #3fb950;"></i>
@@ -224,8 +222,8 @@ const eduCount = EDUCATION.length;
 
         <!-- Contribution history card -->
         <div
-          class="rounded-lg overflow-hidden card-elevated"
-          style="background-color: var(--color-card-bg); border: 1px solid var(--color-border);"
+          class="overflow-hidden card-elevated"
+          style="background-color: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 12px;"
         >
           <!-- Card header -->
           <div
@@ -368,18 +366,20 @@ const eduCount = EDUCATION.length;
         </div>
 
         <!-- Language pills + sort -->
-        <div class="flex items-center gap-2 flex-wrap">
-          <button
-            @click="langFilter = 'all'"
-            class="px-3 py-1.5 text-xs font-mono rounded-full transition-colors"
-            :style="langFilter === 'all' ? 'background-color: var(--color-accent); color: #fff; border: 1px solid transparent;' : 'background-color: transparent; border: 1px solid var(--color-border); color: var(--color-text-muted);'"
-            x-text="t.projects_all"
-          >Todos</button>
-          <button
-            @click="langFilter = 'PHP'"
-            class="px-3 py-1.5 text-xs font-mono rounded-full transition-colors"
-            :style="langFilter === 'PHP' ? 'background-color: var(--color-accent); color: #fff; border: 1px solid transparent;' : 'background-color: transparent; border: 1px solid var(--color-border); color: var(--color-text-muted);'"
-          >PHP</button>
+        <div class="flex items-center gap-2 flex-wrap ml-auto">
+          <div class="lang-pill-group">
+            <button
+              @click="langFilter = 'all'"
+              class="lang-pill"
+              :class="langFilter === 'all' ? 'active' : ''"
+              x-text="t.projects_all"
+            >Todos</button>
+            <button
+              @click="langFilter = 'PHP'"
+              class="lang-pill"
+              :class="langFilter === 'PHP' ? 'active' : ''"
+            >PHP</button>
+          </div>
 
           <!-- Sort dropdown -->
           <div class="relative">
@@ -437,10 +437,10 @@ const eduCount = EDUCATION.length;
             ></p>
 
             <!-- Footer row -->
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between border-t border-gray-100 dark:border-[#30363d] pt-4 mt-4">
               <div class="flex items-center gap-4">
                 <span class="flex items-center gap-1.5 text-xs font-mono" style="color: var(--color-text-muted);">
-                  <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: #f05032;"></span>
+                  <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" :style="`background-color: ${project.languageColor}`"></span>
                   <span x-text="project.language"></span>
                 </span>
                 <span class="flex items-center gap-1 text-xs font-mono" style="color: var(--color-text-muted);">
@@ -516,10 +516,13 @@ const eduCount = EDUCATION.length;
         <p class="text-sm" style="color: var(--color-text-muted);" x-text="t.section_edu_sub">Formação académica e desenvolvimento de competências</p>
       </div>
 
+      <!-- Education card wrapper -->
+      <div style="background-color: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden;">
+
       <!-- Header bar -->
       <div
-        class="flex items-center justify-between px-4 py-2.5 rounded-t-lg mb-0"
-        style="background-color: var(--color-bg-panel); border: 1px solid var(--color-border); border-bottom: none;"
+        class="flex items-center justify-between px-4 py-2.5"
+        style="background-color: var(--color-bg-panel); border-bottom: 1px solid var(--color-border);"
       >
         <div class="flex items-center gap-2">
           <i class="ti ti-git-pull-request text-sm" style="color: var(--color-accent-purple);"></i>
@@ -534,7 +537,7 @@ const eduCount = EDUCATION.length;
       </div>
 
       <!-- Education items list -->
-      <div style="border: 1px solid var(--color-border); border-radius: 0 0 8px 8px; overflow: hidden;">
+      <div>
         {EDUCATION.map((item, idx) => (
           <div
             style={idx > 0 ? 'border-top: 1px solid var(--color-border);' : ''}
@@ -577,7 +580,7 @@ const eduCount = EDUCATION.length;
                     x-text="t.edu_merged_label"
                   >Merged</span>
                   <span class="text-xs" style="color: var(--color-text-muted);">
-                    <span x-text="t.edu_merged_by">concluído por kelvinlima em</span> {item.year}
+                    <span x-text="t.edu_merged_by">concluído por kelvinlima em</span> {item.period}
                   </span>
                 </div>
               </div>
@@ -653,6 +656,8 @@ const eduCount = EDUCATION.length;
         ))}
       </div>
 
+      </div>{/* end education card wrapper */}
+
     </div>
   </section>
 
@@ -668,12 +673,23 @@ const eduCount = EDUCATION.length;
     <div class="max-w-6xl mx-auto px-4">
 
       <!-- Section heading -->
-      <div class="mb-6">
+      <div class="mb-5">
         <h2 class="flex items-center gap-2 text-xl font-semibold mb-1" style="color: var(--color-text-primary);">
           <i class="ti ti-package text-xl" style="color: var(--color-accent);"></i>
           <span x-text="t.section_stack_title">Minha Stack Tecnológica</span>
         </h2>
-        <p class="text-sm" style="color: var(--color-text-muted);" x-text="t.section_stack_sub">Tecnologias e ferramentas que utilizo no dia-a-dia</p>
+        <p class="text-sm" style="color: var(--color-text-muted);" x-text="t.section_stack_sub">Uma representação estruturada em JSON e explorável interativamente de todas as tecnologias que utilizo.</p>
+      </div>
+
+      <!-- Tech pills row -->
+      <div class="flex flex-wrap gap-2 mb-5">
+        {allTechItems.map((item) => (
+          <button
+            class="stack-pill"
+            :class={`{ 'active': activeTech === '${item}' }`}
+            @click={`activeTech = '${item}'`}
+          >{item}</button>
+        ))}
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
@@ -700,24 +716,23 @@ const eduCount = EDUCATION.length;
               </div>
             </div>
 
-            <!-- JSON body -->
+            <!-- JSON body: compact single-line per category -->
             <div class="p-4 font-mono text-sm leading-loose overflow-x-auto">
               <span style="color: #e3b341;">{'{'}</span>
               {STACK.map((group, gi) => (
-                <div class="ml-4">
-                  <span style="color: #79c0ff;">&quot;{group.category}&quot;</span>
-                  <span style="color: var(--color-text-muted);">: </span>
-                  <span style="color: var(--color-text-muted);">[</span>
+                <div class="pl-4">
+                  <span style="color: #79c0ff;">&quot;{group.key}&quot;</span>
+                  <span style="color: var(--color-text-muted);"> : [ </span>
                   {group.items.map((item, ii) => (
-                    <span
-                      class="stack-json-item"
-                      :class={`{ 'active': activeTech === '${item}' }`}
-                      @click={`activeTech = '${item}'`}
-                    >
-                      <span style="color: #7ee787;">&quot;{item}&quot;</span>{ii < group.items.length - 1 ? <span style="color: var(--color-text-muted);">, </span> : null}
+                    <span>
+                      <span
+                        class="stack-json-item"
+                        :class={`{ 'active': activeTech === '${item}' }`}
+                        @click={`activeTech = '${item}'`}
+                      ><span style="color: #7ee787;">&quot;{item}&quot;</span></span>{ii < group.items.length - 1 ? <span style="color: var(--color-text-muted);">, </span> : null}
                     </span>
                   ))}
-                  <span style="color: var(--color-text-muted);">]{gi < STACK.length - 1 ? ',' : ''}</span>
+                  <span style="color: var(--color-text-muted);"> ]{gi < STACK.length - 1 ? ',' : ''}</span>
                 </div>
               ))}
               <span style="color: #e3b341;">{'}'}</span>
@@ -725,31 +740,10 @@ const eduCount = EDUCATION.length;
           </div>
         </div>
 
-        <!-- Right (5 cols): badges + terminal -->
-        <div class="lg:col-span-5 flex flex-col gap-4">
-
-          <!-- Badge pills box -->
+        <!-- Right (5 cols): terminal (fills full height) -->
+        <div class="lg:col-span-5">
           <div
-            class="rounded-lg p-4 card-elevated"
-            style="background-color: var(--color-card-bg); border: 1px solid var(--color-border);"
-          >
-            <p class="text-xs uppercase font-mono tracking-widest mb-3" style="color: var(--color-text-subtle);" x-text="t.stack_badges_label">Pílulas Badge Interativas</p>
-            <div class="flex flex-wrap gap-2">
-              {allTechItems.map((item) => (
-                <button
-                  class="px-3 py-1 rounded-full text-xs font-mono transition-all duration-150 cursor-pointer"
-                  :style={`activeTech === '${item}'
-                    ? 'background-color: var(--color-accent); color: #fff; border: 1px solid transparent; font-weight: 700;'
-                    : 'background-color: var(--color-bg-panel); border: 1px solid var(--color-border); color: var(--color-text-muted);'`}
-                  @click={`activeTech = '${item}'`}
-                >{item}</button>
-              ))}
-            </div>
-          </div>
-
-          <!-- Terminal -->
-          <div
-            class="rounded-lg overflow-hidden card-elevated flex-1"
+            class="rounded-lg overflow-hidden card-elevated h-full"
             style="background-color: var(--color-card-bg); border: 1px solid var(--color-border);"
           >
             <!-- Terminal header -->
@@ -768,7 +762,7 @@ const eduCount = EDUCATION.length;
                 <span style="color: #3fb950;">~</span>
                 <span style="color: var(--color-accent);"> info</span>
                 <span style="color: var(--color-text-muted);"> --tech </span>
-                <span style="color: #e3b341;">"</span><span style="color: #e3b341;" x-text="activeTech">php@8.2</span><span style="color: #e3b341;">"</span>
+                <span style="color: #e3b341;">"</span><span style="color: #e3b341;" x-text="activeTech">PHP</span><span style="color: #e3b341;">"</span>
               </div>
 
               <!-- Output -->
@@ -778,9 +772,9 @@ const eduCount = EDUCATION.length;
               >
                 <div class="flex items-center gap-2 mb-1">
                   <span style="color: var(--color-accent);">·</span>
-                  <span class="font-bold" style="color: var(--color-text-primary);" x-text="activeTech">php@8.2</span>
+                  <span class="font-bold" style="color: var(--color-text-primary);" x-text="activeTech">PHP</span>
                 </div>
-                <p class="text-xs leading-relaxed" style="color: var(--color-text-muted);" x-text="getTechDesc(activeTech)">Backend principal para todos os projectos.</p>
+                <p class="text-xs leading-relaxed" style="color: var(--color-text-muted);" x-text="getTechDesc(activeTech)">Linguagem principal de todos os projectos.</p>
               </div>
 
               <!-- Done line -->
@@ -790,8 +784,8 @@ const eduCount = EDUCATION.length;
               </div>
             </div>
           </div>
-
         </div>
+
       </div>
     </div>
   </section>
@@ -860,11 +854,11 @@ const eduCount = EDUCATION.length;
         <!-- Form (9 cols) -->
         <div class="lg:col-span-9">
           <div
-            class="rounded-lg overflow-hidden card-elevated"
-            style="background-color: var(--color-card-bg); border: 1px solid var(--color-border);"
+            class="overflow-hidden card-elevated"
+            style="background-color: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 12px;"
           >
             <!-- Form header -->
-            <div class="px-4 py-3" style="border-bottom: 1px solid var(--color-border);">
+            <div style="background-color: var(--color-header-bg); border-bottom: 1px solid var(--color-border); padding: 10px 16px;">
               <p class="text-sm font-medium" style="color: var(--color-text-primary);" x-text="t.contact_issue_form_title">Criar Nova Issue / Proposta de Projeto</p>
             </div>
 
@@ -877,8 +871,8 @@ const eduCount = EDUCATION.length;
                   type="text"
                   x-model="title"
                   :placeholder="t.contact_title_ph"
-                  class="w-full px-3 py-2 text-sm rounded-md outline-none transition-colors"
-                  style="background-color: var(--color-bg-panel); border: 1px solid var(--color-border); color: var(--color-text-primary);"
+                  class="outline-none transition-colors"
+                  style="width: 100%; background-color: var(--color-bg-dark); border: 1px solid var(--color-border); border-radius: 6px; color: var(--color-text-primary); padding: 6px 12px; font-size: 14px;"
                   onfocus="this.style.borderColor='var(--color-accent)'"
                   onblur="this.style.borderColor='var(--color-border)'"
                 />
@@ -919,8 +913,8 @@ const eduCount = EDUCATION.length;
                     x-model="body"
                     :placeholder="t.contact_body_ph"
                     rows="7"
-                    class="w-full px-3 py-2 text-sm rounded-md outline-none resize-none font-mono transition-colors"
-                    style="background-color: var(--color-bg-panel); border: 1px solid var(--color-border); color: var(--color-text-primary);"
+                    class="outline-none resize-none transition-colors"
+                    style="width: 100%; background-color: var(--color-bg-dark); border: 1px solid var(--color-border); border-radius: 6px; color: var(--color-text-primary); font-family: var(--font-mono); font-size: 13px; padding: 8px 12px;"
                     onfocus="this.style.borderColor='var(--color-accent)'"
                     onblur="this.style.borderColor='var(--color-border)'"
                   ></textarea>
@@ -940,9 +934,11 @@ const eduCount = EDUCATION.length;
                 <button
                   @click="submit()"
                   :disabled="loading"
-                  class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-opacity cursor-pointer"
-                  style="background-color: #2da44e; color: #fff; border: none;"
-                  :style="loading ? 'opacity: 0.7; cursor: not-allowed;' : 'opacity: 1;'"
+                  class="cursor-pointer"
+                  style="display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 6px; background-color: #2da44e; color: #fff; font-weight: 600; font-size: 13px; border: none; transition: background-color 0.15s, opacity 0.15s;"
+                  :style="{ opacity: loading ? '0.7' : '1', cursor: loading ? 'not-allowed' : 'pointer' }"
+                  onmouseover="if (!this.disabled) this.style.backgroundColor='#2c974b'"
+                  onmouseout="this.style.backgroundColor='#2da44e'"
                 >
                   <i class="ti ti-message-circle text-sm"></i>
                   <span x-text="loading ? t.contact_processing : t.contact_submit_btn">Submeter nova issue</span>
@@ -957,28 +953,28 @@ const eduCount = EDUCATION.length;
         <div class="lg:col-span-3">
           <div
             class="rounded-lg p-4 flex flex-col gap-5 card-elevated"
-            style="background-color: var(--color-card-bg); border: 1px solid var(--color-border);"
+            style="background-color: var(--color-bg-panel); border: 1px solid var(--color-border);"
           >
 
             <!-- Assignees -->
-            <div>
+            <div style="border-bottom: 1px solid var(--color-border); padding-bottom: 12px;">
               <p class="text-xs uppercase font-mono tracking-widest mb-2" style="color: var(--color-text-subtle);" x-text="t.contact_assignee_label">Atribuído a</p>
               <div class="flex items-center gap-2">
                 <div
-                  class="w-5 h-5 rounded-full flex items-center justify-center font-mono text-xs flex-shrink-0"
-                  style="background-color: var(--color-bg-panel); border: 1px solid var(--color-border); color: var(--color-accent); font-size: 7px;"
+                  class="flex items-center justify-center flex-shrink-0"
+                  style="width: 22px; height: 22px; border-radius: 50%; background-color: var(--color-bg-panel); border: 1px solid var(--color-border); color: var(--color-accent); font-family: var(--font-mono); font-size: 8px; font-weight: 700; letter-spacing: -0.5px;"
                 >&lt;//&gt;</div>
                 <span class="font-mono text-xs" style="color: var(--color-text-muted);">kelvinlima91</span>
               </div>
             </div>
 
             <!-- Labels -->
-            <div>
+            <div style="padding-top: 12px;">
               <p class="text-xs uppercase font-mono tracking-widest mb-2" style="color: var(--color-text-subtle);" x-text="t.contact_labels_label">Etiquetas</p>
-              <div class="flex flex-col gap-1.5">
-                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full w-fit" style="background-color: rgba(88,166,255,0.12); border: 1px solid rgba(88,166,255,0.3); color: var(--color-accent);">enhancement</span>
-                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full w-fit" style="background-color: rgba(188,140,255,0.12); border: 1px solid rgba(188,140,255,0.3); color: var(--color-accent-purple);">collaboration</span>
-                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full w-fit" style="background-color: rgba(63,185,80,0.12); border: 1px solid rgba(63,185,80,0.3); color: var(--color-accent-green);">vibe-check</span>
+              <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                <span style="display: inline-flex; background-color: #1f6feb40; color: #58a6ff; border: 1px solid #1f6feb; font-weight: 700; font-family: var(--font-mono); font-size: 10px; padding: 2px 8px; border-radius: 20px;">enhancement</span>
+                <span style="display: inline-flex; background-color: #8957e540; color: #bc8cff; border: 1px solid #8957e5; font-weight: 700; font-family: var(--font-mono); font-size: 10px; padding: 2px 8px; border-radius: 20px;">collaboration</span>
+                <span style="display: inline-flex; background-color: #2ea04340; color: #3fb950; border: 1px solid #2ea043; font-weight: 700; font-family: var(--font-mono); font-size: 10px; padding: 2px 8px; border-radius: 20px;">vibe-check</span>
               </div>
             </div>
 
@@ -988,7 +984,7 @@ const eduCount = EDUCATION.length;
       </div>
 
       <!-- Footer row -->
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 pt-6" style="border-top: 1px solid var(--color-border);">
         <!-- Status pill -->
         <div
           class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono"
@@ -1059,10 +1055,13 @@ const eduCount = EDUCATION.length;
     }));
 
     Alpine.data('stackSection', () => ({
-      activeTech: 'php@8.2',
+      activeTech: 'PHP',
       techDetails: TECH_DETAILS,
       getTechDesc(tech: string) {
-        return (this.techDetails as Record<string, string>)[tech] || 'Technology in the stack.';
+        const detail = (this.techDetails as Record<string, { pt: string; en: string }>)[tech];
+        if (!detail) return 'Technology in the stack.';
+        const lang = document.documentElement.lang || 'pt';
+        return lang === 'en' ? detail.en : detail.pt;
       },
     }));
 
