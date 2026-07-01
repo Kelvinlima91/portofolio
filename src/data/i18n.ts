@@ -15,7 +15,7 @@ export const translations = {
 
     // README card
     home_readme_title: 'Olá, sou o Kelvin Lima',
-    home_bio: 'Developer apaixonado por criar produtos digitais para o mercado cabo-verdiano. Especializado em Laravel, Alpine.js e Tailwind CSS v4. Formado em Engenharia de Sistemas e Informática pela Universidade Jean Piaget de Cabo Verde.',
+    home_bio: 'Software developer de Mindelo, Cabo Verde. Construo produtos digitais para o mercado cabo-verdiano com Laravel, Tailwind CSS e Alpine.js.',
     home_stat_projects_label: 'Projectos',
     home_stat_tests_label: 'Testes escritos',
     home_stat_years_label: 'Anos de código',
@@ -43,7 +43,7 @@ export const translations = {
 
     // Projects section
     section_projects_title: 'Projectos e Repositórios',
-    section_projects_sub: 'Repositórios fixados e projectos em destaque',
+    section_projects_sub: 'Uma seleção de repositórios open-source e produtos que construí.',
     projects_search_ph: 'Procurar repositório...',
     projects_all: 'Todos',
     projects_sort_stars: 'Estrelas',
@@ -56,7 +56,7 @@ export const translations = {
 
     // Education section
     section_edu_title: 'Percurso Académico e Certificações',
-    section_edu_sub: 'Formação académica e desenvolvimento de competências',
+    section_edu_sub: 'Histórico escolar e profissional representado como Pull Requests integrados no ramo principal.',
     edu_merged_prs_label: 'Merged Pull Requests',
     edu_commented: 'kelvinlima91 commented',
     edu_contributor: 'original contributor',
@@ -69,7 +69,7 @@ export const translations = {
 
     // Stack section
     section_stack_title: 'Minha Stack Tecnológica',
-    section_stack_sub: 'Tecnologias e ferramentas que utilizo no dia-a-dia',
+    section_stack_sub: 'Uma representação estruturada em JSON e explorável interativamente de todas as tecnologias que utilizo.',
     stack_badges_label: 'Pílulas Badge Interativas',
     stack_terminal_header: 'bash - kelvin@macbook',
     stack_process_done: 'Process completed with code 0',
@@ -79,7 +79,7 @@ export const translations = {
     section_contact_sub: 'Tens um projecto em mente? Abre uma issue.',
     contact_github_profile: 'GitHub Profile',
     contact_linkedin_profile: 'LinkedIn Profile',
-    contact_issue_form_title: 'Criar Nova Issue / Proposta de Projeto',
+    contact_issue_form_title: 'Proposta de Projeto',
     contact_title_label: 'Título',
     contact_title_ph: 'Ex: Parceria no desenvolvimento de uma nova aplicação Web',
     contact_write_tab: 'Escrever',
@@ -143,7 +143,7 @@ export const translations = {
 
     // README card
     home_readme_title: "Hi, I'm Kelvin Lima",
-    home_bio: 'Developer passionate about creating digital products for the Cape Verdean market. Specialized in Laravel, Alpine.js and Tailwind CSS v4. Graduated in Systems and Computer Engineering from Universidade Jean Piaget de Cabo Verde.',
+    home_bio: 'Software developer from Mindelo, Cape Verde. I build digital products for the Cape Verdean market with Laravel, Tailwind CSS, and Alpine.js.',
     home_stat_projects_label: 'Projects',
     home_stat_tests_label: 'Tests written',
     home_stat_years_label: 'Years of code',
@@ -171,7 +171,7 @@ export const translations = {
 
     // Projects section
     section_projects_title: 'Projects and Repositories',
-    section_projects_sub: 'Pinned repositories and featured projects',
+    section_projects_sub: 'A curated selection of open-source repositories and products I built.',
     projects_search_ph: 'Find a repository...',
     projects_all: 'All',
     projects_sort_stars: 'Stars',
@@ -184,7 +184,7 @@ export const translations = {
 
     // Education section
     section_edu_title: 'Education and Certifications',
-    section_edu_sub: 'Academic background and competency development',
+    section_edu_sub: 'Academic and professional journey represented as Pull Requests merged into the main branch.',
     edu_merged_prs_label: 'Merged Pull Requests',
     edu_commented: 'kelvinlima91 commented',
     edu_contributor: 'original contributor',
@@ -197,7 +197,7 @@ export const translations = {
 
     // Stack section
     section_stack_title: 'My Tech Stack',
-    section_stack_sub: 'Technologies and tools I use every day',
+    section_stack_sub: 'A structured JSON representation, interactively explorable, of all the technologies I work with.',
     stack_badges_label: 'Interactive Badge Pills',
     stack_terminal_header: 'bash - kelvin@macbook',
     stack_process_done: 'Process completed with code 0',
@@ -207,7 +207,7 @@ export const translations = {
     section_contact_sub: 'Have a project in mind? Open an issue.',
     contact_github_profile: 'GitHub Profile',
     contact_linkedin_profile: 'LinkedIn Profile',
-    contact_issue_form_title: 'Create New Issue / Project Proposal',
+    contact_issue_form_title: 'Project Proposal',
     contact_title_label: 'Title',
     contact_title_ph: 'e.g., Collaboration on a brand new Web Application',
     contact_write_tab: 'Write',

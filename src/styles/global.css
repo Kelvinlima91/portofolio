@@ -12,6 +12,8 @@
   --color-bg-dark:    #0d1117;
   --color-bg-panel:   #161b22;
   --color-bg-card:    #0d1117;
+  --color-bg-inset:   #0d1117;
+  --color-header-bg:  #1c2128;
 
   /* Semantic surface tokens — dark mode defaults */
   --color-card-bg:     #161b22;
@@ -43,6 +45,8 @@ html:not(.dark) {
   --color-bg-dark:        #ffffff;
   --color-bg-panel:       #f6f8fa;
   --color-bg-card:        #ffffff;
+  --color-bg-inset:       #f6f8fa;
+  --color-header-bg:      #f6f8fa;
   --color-border:         #d0d7de;
   --color-border-strong:  #afb8c1;
   --color-text-primary:   #24292f;
@@ -167,10 +171,12 @@ html:not(.dark) .contrib-seg {
   transition: background-color 0.15s, color 0.15s;
 }
 .stack-json-item:hover {
-  color: #e6edf3;
+  color: #58a6ff;
+  background-color: #388bfd15;
 }
 html:not(.dark) .stack-json-item:hover {
-  color: #24292f;
+  color: #0969da;
+  background-color: rgba(9, 105, 218, 0.08);
 }
 .stack-json-item.active {
   background-color: rgba(88, 166, 255, 0.15);
@@ -184,6 +190,41 @@ html:not(.dark) .stack-json-item.active {
   color: #0969da;
 }
 
+/* ── Stack tech pills (below JSON viewer) ── */
+.stack-pill {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  border: 1px solid #30363d;
+  background-color: #0d1117;
+  color: #8b949e;
+  transition: border-color 0.15s, color 0.15s, background-color 0.15s;
+}
+.stack-pill:hover {
+  border-color: #8b949e;
+}
+.stack-pill.active {
+  background-color: #388bfd15;
+  border-color: #388bfd;
+  color: #58a6ff;
+  font-weight: 600;
+}
+html:not(.dark) .stack-pill {
+  background-color: #f6f8fa;
+  border-color: #d0d7de;
+  color: #57606a;
+}
+html:not(.dark) .stack-pill:hover {
+  border-color: #8c959f;
+}
+html:not(.dark) .stack-pill.active {
+  background-color: rgba(56, 139, 253, 0.08);
+  border-color: #0969da;
+  color: #0969da;
+}
+
 /* ── Contact tab active ── */
 .contact-tab-active {
   border-bottom: 2px solid var(--color-accent-orange);
@@ -193,4 +234,40 @@ html:not(.dark) .stack-json-item.active {
 /* ── Light mode card elevation ── */
 html:not(.dark) .card-elevated {
   box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
+}
+
+/* ── Language filter pill group ── */
+.lang-pill-group {
+  display: inline-flex;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #30363d;
+}
+html:not(.dark) .lang-pill-group {
+  border-color: #d0d7de;
+}
+
+.lang-pill {
+  padding: 5px 12px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: background-color 0.15s, color 0.15s;
+  background: transparent;
+  color: #8b949e;
+}
+html:not(.dark) .lang-pill {
+  color: #57606a;
+}
+
+.lang-pill.active {
+  background-color: #21262d;
+  color: #e6edf3;
+  font-weight: 600;
+}
+html:not(.dark) .lang-pill.active {
+  background-color: #f6f8fa;
+  color: #24292f;
 }
