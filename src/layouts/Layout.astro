@@ -15,7 +15,7 @@ const {
 
 const navTabs = [
   { key: 'nav_home',      href: '#home',      pt: 'Início',    en: 'Home'      },
-  { key: 'nav_projects',  href: '#projects',  pt: 'Projectos', en: 'Projects'  },
+  { key: 'nav_projects',  href: '#projects',  pt: 'Projetos',  en: 'Projects'  },
   { key: 'nav_education', href: '#education', pt: 'Educação',  en: 'Education' },
   { key: 'nav_stack',     href: '#stack',     pt: 'Stack',     en: 'Stack'     },
   { key: 'nav_contact',   href: '#contact',   pt: 'Contacto',  en: 'Contact'   },
@@ -23,7 +23,7 @@ const navTabs = [
 ---
 
 <!doctype html>
-<html lang="pt" class="dark">
+<html lang="pt-PT" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -67,7 +67,7 @@ const navTabs = [
           document.documentElement.classList.add('dark');
         }
         const lang = localStorage.getItem('lang') || 'pt';
-        document.documentElement.lang = lang;
+        document.documentElement.lang = lang === 'pt' ? 'pt-PT' : 'en';
       })();
     </script>
   </head>
@@ -257,7 +257,7 @@ const navTabs = [
         this.lang = this.lang === 'pt' ? 'en' : 'pt';
         localStorage.setItem('lang', this.lang);
         this.t = translations[this.lang];
-        document.documentElement.lang = this.lang;
+        document.documentElement.lang = this.lang === 'pt' ? 'pt-PT' : 'en';
       },
     }));
   });
