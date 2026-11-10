@@ -44,8 +44,8 @@ Personal portfolio website for Kelvin Lima (kelvinlima.dev), a software develope
 - Oct 2020: ti-flag (ocean blue) — Início da Licenciatura
 - 2021: ti-book (purple) — Fundamentos
 - 2022: ti-code (amber) — Desenvolvimento web
-- 2023: ti-rocket (green) — Projecto final (lroOnline / Reklama)
-- Jun 2024: ti-award (ocean blue) — Licenciatura concluída + diploma badge
+- 2023: ti-rocket (green) — Projeto final (lroOnline / Reklama)
+- Jun 2024: ti-award (ocean blue) — Unidades curriculares concluídas; defesa de tese pendente (degree NOT yet conferred)
 
 ## Projects data
 ### O Menu CV (featured)
@@ -91,8 +91,7 @@ All visible text must support both languages. Key sections:
 - section_education: "Educação" / "Education"
 - section_stack: "Stack técnica" / "Tech stack"
 - section_contact: "Contacto" / "Contact"
-- contact_tagline: "Tens um projecto em mente? Fala comigo." / "Have a project in mind? Let's talk."
-- diploma_badge: "Diploma obtido" / "Degree obtained"
+- contact_tagline: "Tens um projeto em mente? Fala comigo." / "Have a project in mind? Let's talk."
 - featured_tag: "Destaque" / "Featured"
 
 ## Rules
@@ -104,3 +103,4 @@ All visible text must support both languages. Key sections:
 - No external UI libraries — pure Astro + Tailwind + Alpine
 - Mobile responsive
 - Deploy target: Netlify (static output)
+- Never claim the degree is completed, a diploma was obtained, or the thesis was approved ("com distinção", "Merged", "Concluída", "v1.0.0") until Kelvin confirms the thesis defense has actually happened. As of this writing, coursework finished June 2024 but the defense is still pending.
