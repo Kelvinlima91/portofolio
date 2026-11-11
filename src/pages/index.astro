@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import kelvinAvatar from '../assets/kelvin-avatar.jpg';
 import {
   PERSONAL_INFO,
   PROJECTS,
@@ -13,7 +15,8 @@ import {
 } from '../data/portfolio.js';
 
 const allTechItems = STACK.flatMap((s) => s.items);
-const eduCount = EDUCATION.length;
+const eduMergedCount = EDUCATION.filter((item) => item.status === 'merged').length;
+const eduOpenCount = EDUCATION.filter((item) => item.status === 'open').length;
 ---
 
 <Layout>
@@ -29,10 +32,16 @@ const eduCount = EDUCATION.length;
         <div class="sticky top-20 flex flex-col gap-4">
 
           <!-- Avatar -->
-          <div
-            class="w-20 h-20 rounded-full flex items-center justify-center font-mono font-bold self-start"
-            style="font-size: 18px; background-color: var(--color-bg-panel); border: 2px solid var(--color-border); color: var(--color-accent);"
-          >&lt;//&gt;</div>
+          <Image
+            src={kelvinAvatar}
+            width={80}
+            height={80}
+            densities={[1, 2]}
+            loading="eager"
+            alt="Kelvin Lima"
+            class="w-20 h-20 rounded-full self-start object-cover"
+            style="border: 2px solid var(--color-border);"
+          />
 
           <!-- Name + username -->
           <div>
@@ -186,11 +195,11 @@ const eduCount = EDUCATION.length;
                 <ul class="flex flex-col gap-1.5" style="list-style: none; padding: 0; margin: 0;">
                   <li class="flex items-start gap-2 text-xs" style="color: var(--color-text-muted);">
                     <span style="color: #3fb950; flex-shrink: 0; margin-top: 1px;">&#9657;</span>
-                    <span x-text="t.home_learn_1">Arquitectura de microserviços com Laravel</span>
+                    <span x-text="t.home_learn_1">Arquitetura de microserviços com Laravel</span>
                   </li>
                   <li class="flex items-start gap-2 text-xs" style="color: var(--color-text-muted);">
                     <span style="color: #3fb950; flex-shrink: 0; margin-top: 1px;">&#9657;</span>
-                    <span x-text="t.home_learn_2">Optimização de queries N+1</span>
+                    <span x-text="t.home_learn_2">Otimização de queries N+1</span>
                   </li>
                   <li class="flex items-start gap-2 text-xs" style="color: var(--color-text-muted);">
                     <span style="color: #3fb950; flex-shrink: 0; margin-top: 1px;">&#9657;</span>
@@ -231,8 +240,8 @@ const eduCount = EDUCATION.length;
             style="border-bottom: 1px solid var(--color-border);"
           >
             <div>
-              <p class="text-sm font-medium" style="color: var(--color-text-primary);" x-text="t.home_contrib_title">Histórico de contribuições</p>
-              <p class="text-xs mt-0.5" style="color: var(--color-text-muted);" x-text="t.home_contrib_sub">371 dias de actividade real em código</p>
+              <p class="text-sm font-medium" style="color: var(--color-text-primary);" x-text="t.home_contrib_title">Linha do tempo dos projetos</p>
+              <p class="text-xs mt-0.5" style="color: var(--color-text-muted);" x-text="t.home_contrib_sub">Representação ilustrativa, não reflete commits reais</p>
             </div>
             <!-- Legend -->
             <div class="flex items-center gap-3 flex-wrap">
@@ -250,7 +259,7 @@ const eduCount = EDUCATION.length;
               <span style="color: var(--color-border);">|</span>
               <div class="flex items-center gap-1.5 text-xs">
                 <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: var(--color-accent);"></span>
-                <span style="color: var(--color-text-muted);" x-text="t.home_contrib_launch_label">Início de projecto</span>
+                <span style="color: var(--color-text-muted);" x-text="t.home_contrib_launch_label">Início de projeto</span>
               </div>
             </div>
           </div>
@@ -321,7 +330,7 @@ const eduCount = EDUCATION.length;
 
           <!-- Footnote -->
           <p class="text-center text-xs italic pb-3" style="color: var(--color-text-subtle);" x-text="t.home_contrib_footnote">
-            Passa o rato sobre um ponto para ver o projecto
+            Passa o rato sobre um ponto para ver o projeto
           </p>
         </div>
 
@@ -344,57 +353,9 @@ const eduCount = EDUCATION.length;
       <div class="mb-6">
         <h2 class="flex items-center gap-2 text-xl font-semibold mb-1" style="color: var(--color-text-primary);">
           <i class="ti ti-folder text-xl" style="color: var(--color-accent);"></i>
-          <span x-text="t.section_projects_title">Projectos e Repositórios</span>
+          <span x-text="t.section_projects_title">Projetos</span>
         </h2>
-        <p class="text-sm" style="color: var(--color-text-muted);" x-text="t.section_projects_sub">Repositórios fixados e projectos em destaque</p>
-      </div>
-
-      <!-- Filters row -->
-      <div class="flex flex-col sm:flex-row gap-3 mb-5">
-        <!-- Search -->
-        <div class="relative flex-1 max-w-sm">
-          <i class="ti ti-search absolute left-3 top-1/2 -translate-y-1/2 text-sm" style="color: var(--color-text-muted);"></i>
-          <input
-            type="text"
-            x-model="search"
-            :placeholder="t.projects_search_ph"
-            class="w-full pl-8 pr-3 py-2 text-sm rounded-md font-mono outline-none transition-colors"
-            style="background-color: var(--color-bg-panel); border: 1px solid var(--color-border); color: var(--color-text-primary);"
-            onfocus="this.style.borderColor='var(--color-accent)'"
-            onblur="this.style.borderColor='var(--color-border)'"
-          />
-        </div>
-
-        <!-- Language pills + sort -->
-        <div class="flex items-center gap-2 flex-wrap ml-auto">
-          <div class="lang-pill-group">
-            <button
-              @click="langFilter = 'all'"
-              class="lang-pill"
-              :class="langFilter === 'all' ? 'active' : ''"
-              x-text="t.projects_all"
-            >Todos</button>
-            <button
-              @click="langFilter = 'PHP'"
-              class="lang-pill"
-              :class="langFilter === 'PHP' ? 'active' : ''"
-            >PHP</button>
-          </div>
-
-          <!-- Sort dropdown -->
-          <div class="relative">
-            <i class="ti ti-arrows-sort absolute left-2.5 top-1/2 -translate-y-1/2 text-xs pointer-events-none" style="color: var(--color-text-muted);"></i>
-            <select
-              x-model="sortBy"
-              class="pl-7 pr-3 py-1.5 text-xs font-mono rounded-md cursor-pointer outline-none"
-              style="background-color: var(--color-bg-panel); border: 1px solid var(--color-border); color: var(--color-text-muted);"
-            >
-              <option value="stars" x-text="t.projects_sort_stars">Estrelas</option>
-              <option value="name" x-text="t.projects_sort_name">Nome</option>
-              <option value="updated" x-text="t.projects_sort_updated">Atualizado</option>
-            </select>
-          </div>
-        </div>
+        <p class="text-sm" style="color: var(--color-text-muted);" x-text="t.section_projects_sub">Produtos que construí para o mercado cabo-verdiano.</p>
       </div>
 
       <!-- Repository grid (2 cols desktop) -->
@@ -407,28 +368,19 @@ const eduCount = EDUCATION.length;
             <!-- Top row -->
             <div class="flex items-start justify-between gap-2">
               <div class="flex items-center gap-2 flex-wrap min-w-0">
-                <a
-                  :href="project.githubUrl"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <span
                   class="font-mono text-sm font-semibold truncate"
                   style="color: var(--color-accent);"
                   x-text="project.name"
-                ></a>
-                <span
-                  x-show="project.pinned"
-                  class="inline-flex items-center gap-1 text-xs font-mono px-2 py-0.5 rounded-full flex-shrink-0"
-                  style="border: 1px solid var(--color-border); color: var(--color-text-muted);"
-                >
-                  <i class="ti ti-pin text-xs" style="transform: rotate(45deg); display: inline-block;"></i>
-                  <span x-text="lang === 'pt' ? 'fixado' : 'pinned'"></span>
-                </span>
+                ></span>
               </div>
               <span
-                class="text-xs font-mono px-2 py-0.5 rounded-full flex-shrink-0"
+                class="inline-flex items-center gap-1 text-xs font-mono px-2 py-0.5 rounded-full flex-shrink-0"
                 style="border: 1px solid var(--color-border); color: var(--color-text-muted);"
-                x-text="lang === 'pt' ? 'Público' : 'Public'"
-              ></span>
+              >
+                <i class="ti ti-lock text-xs"></i>
+                <span x-text="lang === 'pt' ? 'Privado' : 'Private'"></span>
+              </span>
             </div>
 
             <!-- Description -->
@@ -438,29 +390,11 @@ const eduCount = EDUCATION.length;
 
             <!-- Footer row -->
             <div class="flex items-center justify-between border-t border-gray-100 dark:border-[#30363d] pt-4 mt-4">
-              <div class="flex items-center gap-4">
-                <span class="flex items-center gap-1.5 text-xs font-mono" style="color: var(--color-text-muted);">
-                  <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" :style="`background-color: ${project.languageColor}`"></span>
-                  <span x-text="project.language"></span>
-                </span>
-                <span class="flex items-center gap-1 text-xs font-mono" style="color: var(--color-text-muted);">
-                  <i class="ti ti-star text-xs"></i>
-                  <span x-text="project.stars"></span>
-                </span>
-                <span class="flex items-center gap-1 text-xs font-mono" style="color: var(--color-text-muted);">
-                  <i class="ti ti-git-fork text-xs"></i>
-                  <span x-text="project.forks"></span>
-                </span>
-              </div>
+              <span class="flex items-center gap-1.5 text-xs font-mono" style="color: var(--color-text-muted);">
+                <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" :style="`background-color: ${project.languageColor}`"></span>
+                <span x-text="project.language"></span>
+              </span>
               <div class="flex items-center gap-2">
-                <a
-                  :href="project.githubUrl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style="color: var(--color-text-muted); transition: color 0.15s;"
-                  onmouseover="this.style.color='var(--color-text-primary)'"
-                  onmouseout="this.style.color='var(--color-text-muted)'"
-                ><i class="ti ti-brand-github text-base"></i></a>
                 <a
                   x-show="project.demoUrl"
                   :href="project.demoUrl"
@@ -483,7 +417,7 @@ const eduCount = EDUCATION.length;
         style="border: 2px dashed var(--color-border);"
       >
         <p class="text-sm mb-3" style="color: var(--color-text-muted);" x-text="t.projects_empty">
-          Nenhum repositório corresponde aos filtros seleccionados.
+          Nenhum repositório corresponde aos filtros selecionados.
         </p>
         <button
           @click="resetFilters()"
@@ -527,7 +461,7 @@ const eduCount = EDUCATION.length;
         <div class="flex items-center gap-2">
           <i class="ti ti-git-pull-request text-sm" style="color: var(--color-accent-purple);"></i>
           <span class="text-sm font-medium" style="color: var(--color-text-primary);">
-            {eduCount} <span x-text="t.edu_merged_prs_label">Merged Pull Requests</span>
+            {eduMergedCount} <span x-text="t.edu_count_merged">integrados</span> · {eduOpenCount} <span x-text="t.edu_count_open">abertos</span>
           </span>
         </div>
         <span
@@ -538,22 +472,34 @@ const eduCount = EDUCATION.length;
 
       <!-- Education items list -->
       <div>
-        {EDUCATION.map((item, idx) => (
+        {EDUCATION.map((item, idx) => {
+          const isMerged = item.status === 'merged';
+          const iconBoxStyle = isMerged
+            ? 'background-color: rgba(188,140,255,0.1); border: 1px solid rgba(188,140,255,0.25);'
+            : 'background-color: rgba(63,185,80,0.1); border: 1px solid rgba(63,185,80,0.25);';
+          const iconClass = isMerged ? 'ti ti-git-merge text-sm' : 'ti ti-git-pull-request text-sm';
+          const iconColor = isMerged ? 'var(--color-accent-purple)' : 'var(--color-accent-green)';
+          const drawerId = `edu-drawer-${item.id}`;
+          const buttonId = `edu-toggle-${item.id}`;
+          return (
           <div
             style={idx > 0 ? 'border-top: 1px solid var(--color-border);' : ''}
           >
             <!-- Row header (clickable) -->
             <button
+              id={buttonId}
               class="w-full text-left px-4 py-4 flex items-start gap-3 transition-colors"
               style="background: transparent; border: none; cursor: pointer;"
               @click={`toggle('${item.id}')`}
+              :aria-expanded={`expandedId === '${item.id}'`}
+              aria-controls={drawerId}
             >
               <!-- PR icon box -->
               <div
                 class="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5"
-                style="background-color: rgba(188,140,255,0.1); border: 1px solid rgba(188,140,255,0.25);"
+                style={iconBoxStyle}
               >
-                <i class="ti ti-git-pull-request text-sm" style="color: var(--color-accent-purple);"></i>
+                <i class={iconClass} style={`color: ${iconColor};`}></i>
               </div>
 
               <!-- Middle content -->
@@ -576,12 +522,16 @@ const eduCount = EDUCATION.length;
                 <div class="flex items-center gap-2 mt-1.5 flex-wrap">
                   <span
                     class="text-xs font-mono px-2 py-0.5 rounded-full"
-                    style="background-color: rgba(188,140,255,0.12); border: 1px solid rgba(188,140,255,0.3); color: var(--color-accent-purple);"
-                    x-text="t.edu_merged_label"
-                  >Merged</span>
-                  <span class="text-xs" style="color: var(--color-text-muted);">
-                    <span x-text="t.edu_merged_by">concluído por kelvinlima em</span> {item.period}
-                  </span>
+                    style={isMerged
+                      ? 'background-color: rgba(188,140,255,0.12); border: 1px solid rgba(188,140,255,0.3); color: var(--color-accent-purple);'
+                      : 'background-color: rgba(63,185,80,0.12); border: 1px solid rgba(63,185,80,0.3); color: var(--color-accent-green);'}
+                    x-text={isMerged ? 't.edu_merged_label' : 't.edu_open_label'}
+                  >{isMerged ? 'Integrado' : 'Aberto'}</span>
+                  {isMerged && (
+                    <span class="text-xs" style="color: var(--color-text-muted);">
+                      <span x-text="t.edu_merged_by">concluído por kelvinlima em</span> {item.period}
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -601,7 +551,7 @@ const eduCount = EDUCATION.length;
             </button>
 
             <!-- Collapsible drawer -->
-            <div :class={`expandedId === '${item.id}' ? 'edu-drawer open' : 'edu-drawer'`}>
+            <div id={drawerId} role="region" aria-labelledby={buttonId} :class={`expandedId === '${item.id}' ? 'edu-drawer open' : 'edu-drawer'`}>
               <div>
                 <div class="px-4 pb-5 ml-11">
 
@@ -619,41 +569,33 @@ const eduCount = EDUCATION.length;
                     x-text={`lang === 'pt' ? '${item.descriptionPt}' : '${item.descriptionEn}'`}
                   >{item.descriptionPt}</p>
 
-                  <!-- Modules heading -->
-                  <div class="flex items-center gap-2 mb-3">
-                    <i class="ti ti-message-circle text-sm" style="color: var(--color-accent);"></i>
-                    <span class="text-xs font-medium" style="color: var(--color-text-primary);" x-text="t.edu_modules_heading">Módulos &amp; Competências Chave:</span>
-                  </div>
-                  <!-- Modules grid (empty — ready for data) -->
-                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
-                    <template x-for="module in []" :key="module">
-                      <div class="flex items-start gap-2">
-                        <i class="ti ti-circle-check text-xs flex-shrink-0 mt-0.5" style="color: #3fb950;"></i>
-                        <span class="text-xs" style="color: var(--color-text-muted);" x-text="module"></span>
+                  {item.modules.length > 0 && (
+                    <Fragment>
+                      <!-- Modules heading -->
+                      <div class="flex items-center gap-2 mb-3">
+                        <i class="ti ti-message-circle text-sm" style="color: var(--color-accent);"></i>
+                        <span class="text-xs font-medium" style="color: var(--color-text-primary);" x-text="t.edu_modules_heading">Módulos &amp; Competências Chave:</span>
                       </div>
-                    </template>
-                  </div>
+                      <!-- Modules grid -->
+                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
+                        {item.modules.map((module) => (
+                          <div class="flex items-start gap-2">
+                            <i class="ti ti-circle-check text-xs flex-shrink-0 mt-0.5" style="color: #3fb950;"></i>
+                            <span class="text-xs" style="color: var(--color-text-muted);">{module}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </Fragment>
+                  )}
 
-                  <!-- Review approved box -->
-                  <div
-                    class="rounded-md p-4 flex gap-3"
-                    style="border: 1px solid rgba(63,185,80,0.35); background-color: rgba(63,185,80,0.06);"
-                  >
-                    <i class="ti ti-award text-lg flex-shrink-0 mt-0.5" style="color: #3fb950;"></i>
-                    <div>
-                      <p class="text-sm font-semibold mb-1" style="color: #3fb950;" x-text="t.edu_review_title">Revisão Aprovada</p>
-                      <p class="text-xs leading-relaxed" style="color: var(--color-text-muted);"
-                        x-text={`lang === 'pt' ? t.edu_review_desc_pt + ' ${item.institutionPt}.' : t.edu_review_desc_en + ' ${item.institutionEn}.'`}
-                      >Todos os créditos concluídos com distinção. O código curricular está em conformidade com as diretivas de engenharia do {item.institutionPt}.</p>
-                    </div>
-                  </div>
 
                 </div>
               </div>
             </div>
 
           </div>
-        ))}
+          );
+        })}
       </div>
 
       </div>{/* end education card wrapper */}
@@ -676,7 +618,7 @@ const eduCount = EDUCATION.length;
       <div class="mb-5">
         <h2 class="flex items-center gap-2 text-xl font-semibold mb-1" style="color: var(--color-text-primary);">
           <i class="ti ti-package text-xl" style="color: var(--color-accent);"></i>
-          <span x-text="t.section_stack_title">Minha Stack Tecnológica</span>
+          <span x-text="t.section_stack_title">A minha stack tecnológica</span>
         </h2>
         <p class="text-sm" style="color: var(--color-text-muted);" x-text="t.section_stack_sub">Uma representação estruturada em JSON e explorável interativamente de todas as tecnologias que utilizo.</p>
       </div>
@@ -762,7 +704,7 @@ const eduCount = EDUCATION.length;
                 <span style="color: #3fb950;">~</span>
                 <span style="color: var(--color-accent);"> info</span>
                 <span style="color: var(--color-text-muted);"> --tech </span>
-                <span style="color: #e3b341;">"</span><span style="color: #e3b341;" x-text="activeTech">PHP</span><span style="color: #e3b341;">"</span>
+                <span style="color: #e3b341;">"<span x-text="activeTech">PHP</span>"</span>
               </div>
 
               <!-- Output -->
@@ -774,13 +716,13 @@ const eduCount = EDUCATION.length;
                   <span style="color: var(--color-accent);">·</span>
                   <span class="font-bold" style="color: var(--color-text-primary);" x-text="activeTech">PHP</span>
                 </div>
-                <p class="text-xs leading-relaxed" style="color: var(--color-text-muted);" x-text="getTechDesc(activeTech)">Linguagem principal de todos os projectos.</p>
+                <p class="text-xs leading-relaxed" style="color: var(--color-text-muted);" x-text="getTechDesc(activeTech)">Linguagem principal de todos os projetos.</p>
               </div>
 
               <!-- Done line -->
               <div class="mt-3 flex items-center gap-1.5">
                 <i class="ti ti-check text-xs" style="color: #3fb950;"></i>
-                <span style="color: var(--color-text-muted);" x-text="t.stack_process_done">Process completed with code 0</span>
+                <span style="color: var(--color-text-muted);" x-text="t.stack_process_done">Processo concluído com código 0</span>
               </div>
             </div>
           </div>
@@ -807,7 +749,7 @@ const eduCount = EDUCATION.length;
           <i class="ti ti-message-circle text-xl" style="color: var(--color-accent);"></i>
           <span x-text="t.section_contact_title">Vamos falar</span>
         </h2>
-        <p class="text-sm" style="color: var(--color-text-muted);" x-text="t.section_contact_sub">Tens um projecto em mente? Abre uma issue.</p>
+        <p class="text-sm" style="color: var(--color-text-muted);" x-text="t.section_contact_sub">Tens um projeto em mente? Abre uma issue.</p>
       </div>
 
       <!-- 3-button row -->
@@ -878,6 +820,27 @@ const eduCount = EDUCATION.length;
                 />
               </div>
 
+              <!-- Email field (required — without it there's no way to reply) -->
+              <div>
+                <label class="block text-xs font-medium mb-1.5" style="color: var(--color-text-muted);" x-text="t.contact_email_label">Email</label>
+                <input
+                  type="email"
+                  x-model="email"
+                  required
+                  :placeholder="t.contact_email_ph"
+                  class="outline-none transition-colors"
+                  style="width: 100%; background-color: var(--color-bg-dark); border: 1px solid var(--color-border); border-radius: 6px; color: var(--color-text-primary); padding: 6px 12px; font-size: 14px;"
+                  onfocus="this.style.borderColor='var(--color-accent)'"
+                  onblur="this.style.borderColor='var(--color-border)'"
+                />
+              </div>
+
+              <!-- Honeypot: hidden from real visitors; bots that auto-fill every field trip it -->
+              <div aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
+                <label for="contact-company">Company</label>
+                <input id="contact-company" type="text" name="company" x-model="honeypot" tabindex="-1" autocomplete="off" />
+              </div>
+
               <!-- Write/Preview tabs -->
               <div>
                 <!-- Tab bar -->
@@ -930,19 +893,22 @@ const eduCount = EDUCATION.length;
               </div>
 
               <!-- Submit button -->
-              <div class="flex justify-end">
+              <div class="flex flex-col items-end gap-2">
                 <button
                   @click="submit()"
-                  :disabled="loading"
+                  :disabled="loading || !title.trim() || !email.trim()"
                   class="cursor-pointer"
                   style="display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 6px; background-color: #2da44e; color: #fff; font-weight: 600; font-size: 13px; border: none; transition: background-color 0.15s, opacity 0.15s;"
-                  :style="{ opacity: loading ? '0.7' : '1', cursor: loading ? 'not-allowed' : 'pointer' }"
+                  :style="{ opacity: (loading || !title.trim() || !email.trim()) ? '0.7' : '1', cursor: (loading || !title.trim() || !email.trim()) ? 'not-allowed' : 'pointer' }"
                   onmouseover="if (!this.disabled) this.style.backgroundColor='#2c974b'"
                   onmouseout="this.style.backgroundColor='#2da44e'"
                 >
                   <i class="ti ti-message-circle text-sm"></i>
                   <span x-text="loading ? t.contact_processing : t.contact_submit_btn">Submeter nova issue</span>
                 </button>
+                <p class="text-xs text-right" style="color: var(--color-text-subtle);" x-text="t.contact_mailto_note">
+                  Isto abre o teu cliente de email predefinido com a mensagem pré-preenchida. Preferes escrever diretamente? Envia para hello@kelvinlima.dev
+                </p>
               </div>
 
             </div>
@@ -972,9 +938,9 @@ const eduCount = EDUCATION.length;
             <div style="padding-top: 12px;">
               <p class="text-xs uppercase font-mono tracking-widest mb-2" style="color: var(--color-text-subtle);" x-text="t.contact_labels_label">Etiquetas</p>
               <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-                <span style="display: inline-flex; background-color: #1f6feb40; color: #58a6ff; border: 1px solid #1f6feb; font-weight: 700; font-family: var(--font-mono); font-size: 10px; padding: 2px 8px; border-radius: 20px;">enhancement</span>
+                <span style="display: inline-flex; background-color: #1f6feb40; color: #58a6ff; border: 1px solid #1f6feb; font-weight: 700; font-family: var(--font-mono); font-size: 10px; padding: 2px 8px; border-radius: 20px;">project</span>
                 <span style="display: inline-flex; background-color: #8957e540; color: #bc8cff; border: 1px solid #8957e5; font-weight: 700; font-family: var(--font-mono); font-size: 10px; padding: 2px 8px; border-radius: 20px;">collaboration</span>
-                <span style="display: inline-flex; background-color: #2ea04340; color: #3fb950; border: 1px solid #2ea043; font-weight: 700; font-family: var(--font-mono); font-size: 10px; padding: 2px 8px; border-radius: 20px;">vibe-check</span>
+                <span style="display: inline-flex; background-color: #2ea04340; color: #3fb950; border: 1px solid #2ea043; font-weight: 700; font-family: var(--font-mono); font-size: 10px; padding: 2px 8px; border-radius: 20px;">question</span>
               </div>
             </div>
 
@@ -994,12 +960,12 @@ const eduCount = EDUCATION.length;
             <span class="absolute inset-0 rounded-full animate-ping" style="background-color: #3fb950; opacity: 0.6;"></span>
             <span class="relative block w-2 h-2 rounded-full" style="background-color: #3fb950;"></span>
           </div>
-          <span style="color: #3fb950;" x-text="t.contact_status_ok">All systems normal</span>
+          <span style="color: #3fb950;" x-text="t.contact_status_ok">Tudo operacional</span>
         </div>
 
         <!-- Copyright -->
         <p class="text-xs" style="color: var(--color-text-subtle);">
-          &copy; {new Date().getFullYear()} Kelvin Lima. Made with pure craftsmanship.
+          &copy; {new Date().getFullYear()} Kelvin Lima. <span x-text="t.footer_tagline">Feito com dedicação.</span>
         </p>
       </div>
 
@@ -1068,7 +1034,9 @@ const eduCount = EDUCATION.length;
     Alpine.data('contactSection', () => ({
       tab: 'write',
       title: '',
+      email: '',
       body: '',
+      honeypot: '',
       loading: false,
 
       renderPreview(text: string) {
@@ -1091,14 +1059,16 @@ const eduCount = EDUCATION.length;
       },
 
       submit() {
-        if (!this.title.trim()) return;
+        if (this.honeypot.trim()) return; // bot trap, fail silently
+        if (!this.title.trim() || !this.email.trim()) return;
         this.loading = true;
         const subject = '[GitHub Issue] ' + this.title;
+        const bodyWithSender = 'De: ' + this.email + '\n\n' + this.body;
         const mailto =
           'mailto:hello@kelvinlima.dev?subject=' +
           encodeURIComponent(subject) +
           '&body=' +
-          encodeURIComponent(this.body);
+          encodeURIComponent(bodyWithSender);
         setTimeout(() => {
           window.location.href = mailto;
           this.loading = false;

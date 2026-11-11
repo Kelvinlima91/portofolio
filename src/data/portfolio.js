@@ -17,7 +17,7 @@ export const PERSONAL_INFO = {
 export const PROJECTS = [
   {
     id: 'omenu-cv',
-    name: 'o-menu-cv',
+    name: 'O Menu CV',
     descriptionPt: 'Plataforma de descoberta de restaurantes e pré-encomenda de refeições para Cabo Verde. 107 testes, dashboard com KPIs em tempo real.',
     descriptionEn: 'Cape Verde restaurant discovery and meal pre-ordering platform. 107 tests, dashboard with real-time KPIs.',
     stack: ['Laravel 12', 'Alpine.js', 'Tailwind v4', 'Pest PHP'],
@@ -33,7 +33,7 @@ export const PROJECTS = [
   },
   {
     id: 'portal-vagas-cv',
-    name: 'portal-vagas-cv',
+    name: 'Portal de Vagas CV',
     descriptionPt: 'Portal de emprego com três perfis (Candidato, Empresa, Admin) e ciclo de moderação de vagas.',
     descriptionEn: 'Job portal with three profiles (Candidate, Company, Admin) and a vacancy moderation cycle.',
     stack: ['Laravel 12', 'Tailwind v4'],
@@ -49,7 +49,7 @@ export const PROJECTS = [
   },
   {
     id: 'reklama',
-    name: 'reklama-lroonline',
+    name: 'lroOnline (Reklama)',
     descriptionPt: 'Portal eletrónico de reclamações de consumidores com dashboards para utilizadores, empresas e reguladores.',
     descriptionEn: 'Electronic consumer complaints portal with dashboards for users, companies, and regulators.',
     stack: ['Laravel', 'AJAX', 'MySQL'],
@@ -68,28 +68,30 @@ export const PROJECTS = [
 export const EDUCATION = [
   {
     id: 'piaget-graduation',
-    titlePt: 'Licenciatura Concluída — v1.0.0 — Diploma',
-    titleEn: 'Degree Completed — v1.0.0 — Diploma',
+    titlePt: 'Licenciatura em Engenharia de Sistemas e Informática',
+    titleEn: 'BSc in Systems and Computer Engineering',
     institutionPt: 'Universidade Jean Piaget de Cabo Verde',
     institutionEn: 'Universidade Jean Piaget de Cabo Verde',
     period: 'Jun 2024',
     year: '2024',
     prNumber: '5',
-    descriptionPt: 'Engenharia de Sistemas e Informática — conclusão com distinção. Licenciatura de 4 anos com foco em desenvolvimento de software, bases de dados e sistemas de informação.',
-    descriptionEn: 'Systems and Computer Engineering — completed with distinction. 4-year degree focused on software development, databases and information systems.',
+    status: 'open',
+    descriptionPt: 'Engenharia de Sistemas e Informática. Licenciatura de 4 anos com foco em desenvolvimento de software, bases de dados e sistemas de informação. Unidades curriculares concluídas; defesa de tese pendente.',
+    descriptionEn: 'Systems and Computer Engineering. 4-year degree focused on software development, databases and information systems. Coursework completed; thesis defense pending.',
     modules: [],
   },
   {
     id: 'piaget-tcc',
-    titlePt: 'Trabalho de Fim de Curso — IroOnline (Reklama)',
-    titleEn: 'Final Year Project — IroOnline (Reklama)',
+    titlePt: 'Trabalho de Fim de Curso — lroOnline (Reklama)',
+    titleEn: 'Final Year Project — lroOnline (Reklama)',
     institutionPt: 'Universidade Jean Piaget de Cabo Verde',
     institutionEn: 'Universidade Jean Piaget de Cabo Verde',
     period: '2023',
     year: '2023',
     prNumber: '4',
-    descriptionPt: 'Desenvolvimento da plataforma lroOnline (Reklama) como TCC. Portal eletrónico de reclamações de consumidores com sistema de dashboards multi-nível.',
-    descriptionEn: 'Development of lroOnline (Reklama) as the final thesis. Electronic consumer complaints portal with multi-level dashboard system.',
+    status: 'open',
+    descriptionPt: 'Desenvolvimento da plataforma lroOnline (Reklama) como TCC. Portal eletrónico de reclamações de consumidores com sistema de dashboards multi-nível. Defesa pendente.',
+    descriptionEn: 'Development of lroOnline (Reklama) as the final thesis. Electronic consumer complaints portal with multi-level dashboard system. Defense pending.',
     modules: [],
   },
   {
@@ -101,7 +103,8 @@ export const EDUCATION = [
     period: '2022',
     year: '2022',
     prNumber: '3',
-    descriptionPt: 'Primeiros projectos Laravel, foco em produtos para o mercado cabo-verdiano. Aprendizagem de frameworks MVC e desenvolvimento full-stack.',
+    status: 'merged',
+    descriptionPt: 'Primeiros projetos Laravel, foco em produtos para o mercado cabo-verdiano. Aprendizagem de frameworks MVC e desenvolvimento full-stack.',
     descriptionEn: 'First Laravel projects, focus on the Cape Verdean market. Learning MVC frameworks and full-stack development.',
     modules: [],
   },
@@ -114,6 +117,7 @@ export const EDUCATION = [
     period: '2021',
     year: '2021',
     prNumber: '2',
+    status: 'merged',
     descriptionPt: 'Algoritmos, bases de dados, POO, redes de computadores. Fundamentos sólidos em ciência da computação e matemática aplicada.',
     descriptionEn: 'Algorithms, databases, OOP, computer networks. Solid foundations in computer science and applied mathematics.',
     modules: [],
@@ -127,6 +131,7 @@ export const EDUCATION = [
     period: 'Out 2020',
     year: '2020',
     prNumber: '1',
+    status: 'merged',
     descriptionPt: 'Início do percurso académico em Engenharia de Sistemas e Informática. Integração na vida universitária e primeiros contactos com programação estruturada.',
     descriptionEn: 'Start of the academic journey in Systems and Computer Engineering. Integration into university life and first contacts with structured programming.',
     modules: [],
@@ -162,14 +167,14 @@ export const STACK = [
     key: 'tools',
     labelPt: 'Ferramentas',
     labelEn: 'Tools',
-    items: ['Git', 'GitHub', 'Vite'],
+    items: ['Git', 'GitHub', 'Vite', 'Docker', 'Railway'],
   },
 ];
 
 export const TECH_DETAILS = {
   'PHP': {
-    pt: 'Linguagem principal de todos os projectos. Orientação a objectos, tipagem forte com PHP 8.2.',
-    en: 'Main language across all projects. Object-oriented, strongly typed with PHP 8.2.',
+    pt: 'Linguagem principal de todos os projetos. Orientação a objetos, tipagem forte.',
+    en: 'Main language across all projects. Object-oriented, strongly typed.',
   },
   'Laravel': {
     pt: 'Framework MVC principal. Eloquent ORM, migrations, artisan CLI e sistema de filas.',
@@ -180,7 +185,7 @@ export const TECH_DETAILS = {
     en: 'Utility-first CSS. Version 4 with native Vite engine and design tokens via @theme.',
   },
   'Alpine.js': {
-    pt: 'Interactividade leve no frontend. Sem overhead de framework pesada, integra com Blade.',
+    pt: 'Interatividade leve no frontend. Sem overhead de framework pesada, integra com Blade.',
     en: 'Lightweight frontend interactivity. No heavy framework overhead, integrates with Blade.',
   },
   'Pest PHP': {
@@ -188,7 +193,7 @@ export const TECH_DETAILS = {
     en: 'Elegant testing framework. 107+ tests written in O Menu CV with fluent syntax.',
   },
   'MySQL': {
-    pt: 'Base de dados relacional em produção. Usado em todos os projectos em ambiente de produção.',
+    pt: 'Base de dados relacional em produção. Usado em todos os projetos em ambiente de produção.',
     en: 'Relational database in production. Used across all projects in production environments.',
   },
   'SQLite': {
@@ -200,12 +205,20 @@ export const TECH_DETAILS = {
     en: 'Version control. Feature branches, semantic commits and clean history.',
   },
   'GitHub': {
-    pt: 'Repositórios remotos, pull requests e code reviews. Todos os projectos estão aqui.',
+    pt: 'Repositórios remotos, pull requests e code reviews. Todos os projetos estão aqui.',
     en: 'Remote repositories, pull requests and code reviews. All projects live here.',
   },
   'Vite': {
     pt: 'Bundler ultra-rápido. Integrado nativamente com Tailwind CSS v4 e Laravel.',
     en: 'Ultra-fast bundler. Natively integrated with Tailwind CSS v4 and Laravel.',
+  },
+  'Docker': {
+    pt: 'Contentorização das aplicações para um deploy consistente.',
+    en: 'Containerizes the applications for consistent deployment.',
+  },
+  'Railway': {
+    pt: 'Plataforma de deploy com builds a partir de Dockerfile.',
+    en: 'Deployment platform with Dockerfile-based builds.',
   },
 };
 
@@ -217,5 +230,5 @@ export const CONTRIB_MARKERS = [
   { posPercent: 8,  namePt: 'O Menu CV',          nameEn: 'O Menu CV',          datePt: 'iniciado em Julho 2024',    dateEn: 'started in July 2024' },
   { posPercent: 35, namePt: 'Reklama (lroOnline)', nameEn: 'Reklama (lroOnline)', datePt: 'iniciado em Novembro 2024', dateEn: 'started in November 2024' },
   { posPercent: 62, namePt: 'Portal de Vagas CV',  nameEn: 'Portal de Vagas CV',  datePt: 'iniciado em Março 2025',   dateEn: 'started in March 2025' },
-  { posPercent: 88, namePt: 'Portfolio pessoal',   nameEn: 'Portfolio pessoal',   datePt: 'iniciado em Junho 2025',   dateEn: 'started in June 2025' },
+  { posPercent: 88, namePt: 'Portfolio pessoal',   nameEn: 'Portfolio pessoal',   datePt: 'iniciado em Junho 2026',   dateEn: 'started in June 2026' },
 ];
