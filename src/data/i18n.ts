@@ -11,7 +11,7 @@ export const translations = {
 
     // Home sidebar
     home_get_in_touch: 'Vamos falar',
-    home_readme_active: 'Ativo',
+    home_readme_active: 'Active',
 
     // README card
     home_readme_title: 'Olá, sou o Kelvin Lima',
@@ -35,23 +35,32 @@ export const translations = {
 
     // Contribution history
     home_contrib_title: 'Histórico de contribuições',
-    home_contrib_sub: 'Atividade em código ao longo do último ano',
+    home_contrib_sub: '371 dias de atividade real em código',
     home_contrib_less: 'Menos',
     home_contrib_more: 'Mais commits',
     home_contrib_launch_label: 'Início de projeto',
     home_contrib_footnote: 'Passa o rato sobre um ponto para ver o projeto',
 
     // Projects section
-    section_projects_title: 'Projetos',
+    section_projects_title: 'Projetos e Repositórios',
     section_projects_sub: 'Produtos que construí para o mercado cabo-verdiano.',
+    projects_search_ph: 'Procurar repositório...',
+    projects_all: 'Todos',
+    projects_sort_stars: 'Estrelas',
+    projects_sort_name: 'Nome',
+    projects_sort_updated: 'Atualizado',
+    projects_pinned: 'fixado',
+    projects_public: 'Público',
+    projects_empty: 'Nenhum repositório corresponde aos filtros selecionados.',
+    projects_reset: 'Limpar filtros',
 
     // Education section
-    section_edu_title: 'Percurso Académico',
-    section_edu_sub: 'Percurso académico representado como pull requests.',
+    section_edu_title: 'Percurso Académico e Certificações',
+    section_edu_sub: 'Histórico escolar e profissional representado como Pull Requests integrados no ramo principal.',
     edu_count_merged: 'integrados',
     edu_count_open: 'abertos',
-    edu_commented: 'kelvinlima91 commented',
-    edu_contributor: 'original contributor',
+    edu_commented: 'kelvinlima91 comentou',
+    edu_contributor: 'contribuidor original',
     edu_merged_label: 'Integrado',
     edu_open_label: 'Aberto',
     edu_merged_by: 'concluído por kelvinlima em',
@@ -67,8 +76,8 @@ export const translations = {
     // Contact section
     section_contact_title: 'Vamos falar',
     section_contact_sub: 'Tens um projeto em mente? Abre uma issue.',
-    contact_github_profile: 'GitHub Profile',
-    contact_linkedin_profile: 'LinkedIn Profile',
+    contact_github_profile: 'Perfil GitHub',
+    contact_linkedin_profile: 'Perfil LinkedIn',
     contact_issue_form_title: 'Proposta de Projeto',
     contact_title_label: 'Título',
     contact_title_ph: 'Ex: Parceria no desenvolvimento de uma nova aplicação Web',
@@ -155,19 +164,28 @@ export const translations = {
 
     // Contribution history
     home_contrib_title: 'Contribution history',
-    home_contrib_sub: 'Code activity over the past year',
+    home_contrib_sub: '371 days of real activity in code',
     home_contrib_less: 'Less',
     home_contrib_more: 'More commits',
     home_contrib_launch_label: 'Project launch',
     home_contrib_footnote: 'Hover over a node to inspect project launch',
 
     // Projects section
-    section_projects_title: 'Projects',
+    section_projects_title: 'Projects and Repositories',
     section_projects_sub: 'Products I built for the Cape Verdean market.',
+    projects_search_ph: 'Find a repository...',
+    projects_all: 'All',
+    projects_sort_stars: 'Stars',
+    projects_sort_name: 'Name',
+    projects_sort_updated: 'Updated',
+    projects_pinned: 'pinned',
+    projects_public: 'Public',
+    projects_empty: 'No repositories found matching your selection.',
+    projects_reset: 'Reset filters',
 
     // Education section
-    section_edu_title: 'Academic Path',
-    section_edu_sub: 'Academic journey represented as pull requests.',
+    section_edu_title: 'Education and Certifications',
+    section_edu_sub: 'Academic and professional journey represented as Pull Requests merged into the main branch.',
     edu_count_merged: 'merged',
     edu_count_open: 'open',
     edu_commented: 'kelvinlima91 commented',

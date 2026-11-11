@@ -15,8 +15,8 @@ import {
 } from '../data/portfolio.js';
 
 const allTechItems = STACK.flatMap((s) => s.items);
-const mergedCount = EDUCATION.filter((item) => item.status === 'merged').length;
-const openCount = EDUCATION.filter((item) => item.status === 'open').length;
+const eduMergedCount = EDUCATION.filter((item) => item.status === 'merged').length;
+const eduOpenCount = EDUCATION.filter((item) => item.status === 'open').length;
 ---
 
 <Layout>
@@ -110,7 +110,7 @@ const openCount = EDUCATION.filter((item) => item.status === 'open').length;
                 <span class="absolute inset-0 rounded-full animate-ping" style="background-color: #3fb950; opacity: 0.75;"></span>
                 <span class="relative block w-2 h-2 rounded-full" style="background-color: #3fb950;"></span>
               </div>
-              <span class="text-xs font-mono" style="color: #3fb950;" x-text="t.home_readme_active">Ativo</span>
+              <span class="text-xs font-mono" style="color: #3fb950;">Active</span>
             </div>
           </div>
 
@@ -241,7 +241,7 @@ const openCount = EDUCATION.filter((item) => item.status === 'open').length;
           >
             <div>
               <p class="text-sm font-medium" style="color: var(--color-text-primary);" x-text="t.home_contrib_title">Histórico de contribuições</p>
-              <p class="text-xs mt-0.5" style="color: var(--color-text-muted);" x-text="t.home_contrib_sub">Atividade em código ao longo do último ano</p>
+              <p class="text-xs mt-0.5" style="color: var(--color-text-muted);" x-text="t.home_contrib_sub">371 dias de atividade real em código</p>
             </div>
             <!-- Legend -->
             <div class="flex items-center gap-3 flex-wrap">
@@ -353,14 +353,14 @@ const openCount = EDUCATION.filter((item) => item.status === 'open').length;
       <div class="mb-6">
         <h2 class="flex items-center gap-2 text-xl font-semibold mb-1" style="color: var(--color-text-primary);">
           <i class="ti ti-folder text-xl" style="color: var(--color-accent);"></i>
-          <span x-text="t.section_projects_title">Projetos</span>
+          <span x-text="t.section_projects_title">Projetos e Repositórios</span>
         </h2>
         <p class="text-sm" style="color: var(--color-text-muted);" x-text="t.section_projects_sub">Produtos que construí para o mercado cabo-verdiano.</p>
       </div>
 
-      <!-- Project grid (2 cols desktop) -->
+      <!-- Repository grid (2 cols desktop) -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <template x-for="project in projects" :key="project.id">
+        <template x-for="project in filteredProjects" :key="project.id">
           <div
             class="repo-card rounded-lg p-4 flex flex-col gap-3 card-elevated"
             style="background-color: var(--color-card-bg); border: 1px solid var(--color-border);"
@@ -375,7 +375,6 @@ const openCount = EDUCATION.filter((item) => item.status === 'open').length;
                 ></span>
               </div>
               <span
-                x-show="project.private"
                 class="inline-flex items-center gap-1 text-xs font-mono px-2 py-0.5 rounded-full flex-shrink-0"
                 style="border: 1px solid var(--color-border); color: var(--color-text-muted);"
               >
@@ -395,18 +394,37 @@ const openCount = EDUCATION.filter((item) => item.status === 'open').length;
                 <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" :style="`background-color: ${project.languageColor}`"></span>
                 <span x-text="project.language"></span>
               </span>
-              <a
-                x-show="project.demoUrl"
-                :href="project.demoUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-                style="color: var(--color-text-muted); transition: color 0.15s;"
-                onmouseover="this.style.color='var(--color-text-primary)'"
-                onmouseout="this.style.color='var(--color-text-muted)'"
-              ><i class="ti ti-external-link text-base"></i></a>
+              <div class="flex items-center gap-2">
+                <a
+                  x-show="project.demoUrl"
+                  :href="project.demoUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="color: var(--color-text-muted); transition: color 0.15s;"
+                  onmouseover="this.style.color='var(--color-text-primary)'"
+                  onmouseout="this.style.color='var(--color-text-muted)'"
+                ><i class="ti ti-external-link text-base"></i></a>
+              </div>
             </div>
           </div>
         </template>
+      </div>
+
+      <!-- Empty state -->
+      <div
+        x-show="filteredProjects.length === 0"
+        class="flex flex-col items-center justify-center py-12 rounded-lg"
+        style="border: 2px dashed var(--color-border);"
+      >
+        <p class="text-sm mb-3" style="color: var(--color-text-muted);" x-text="t.projects_empty">
+          Nenhum repositório corresponde aos filtros selecionados.
+        </p>
+        <button
+          @click="resetFilters()"
+          class="text-sm underline cursor-pointer"
+          style="color: var(--color-accent); background: none; border: none;"
+          x-text="t.projects_reset"
+        >Limpar filtros</button>
       </div>
 
     </div>
@@ -427,9 +445,9 @@ const openCount = EDUCATION.filter((item) => item.status === 'open').length;
       <div class="mb-6">
         <h2 class="flex items-center gap-2 text-xl font-semibold mb-1" style="color: var(--color-text-primary);">
           <i class="ti ti-certificate text-xl" style="color: var(--color-accent-purple);"></i>
-          <span x-text="t.section_edu_title">Percurso Académico</span>
+          <span x-text="t.section_edu_title">Percurso Académico e Certificações</span>
         </h2>
-        <p class="text-sm" style="color: var(--color-text-muted);" x-text="t.section_edu_sub">Percurso académico representado como pull requests.</p>
+        <p class="text-sm" style="color: var(--color-text-muted);" x-text="t.section_edu_sub">Formação académica e desenvolvimento de competências</p>
       </div>
 
       <!-- Education card wrapper -->
@@ -443,7 +461,7 @@ const openCount = EDUCATION.filter((item) => item.status === 'open').length;
         <div class="flex items-center gap-2">
           <i class="ti ti-git-pull-request text-sm" style="color: var(--color-accent-purple);"></i>
           <span class="text-sm font-medium" style="color: var(--color-text-primary);">
-            {mergedCount} <span x-text="t.edu_count_merged">integrados</span> · {openCount} <span x-text="t.edu_count_open">abertos</span>
+            {eduMergedCount} <span x-text="t.edu_count_merged">integrados</span> · {eduOpenCount} <span x-text="t.edu_count_open">abertos</span>
           </span>
         </div>
         <span
@@ -456,141 +474,126 @@ const openCount = EDUCATION.filter((item) => item.status === 'open').length;
       <div>
         {EDUCATION.map((item, idx) => {
           const isMerged = item.status === 'merged';
-          const badgeStyle = isMerged
-            ? 'background-color: rgba(188,140,255,0.12); border: 1px solid rgba(188,140,255,0.3); color: var(--color-accent-purple);'
-            : 'background-color: rgba(63,185,80,0.12); border: 1px solid rgba(63,185,80,0.3); color: var(--color-accent-green);';
-          const badgeKey = isMerged ? 't.edu_merged_label' : 't.edu_open_label';
-          const badgeFallback = isMerged ? 'Integrado' : 'Aberto';
+          const iconBoxStyle = isMerged
+            ? 'background-color: rgba(188,140,255,0.1); border: 1px solid rgba(188,140,255,0.25);'
+            : 'background-color: rgba(63,185,80,0.1); border: 1px solid rgba(63,185,80,0.25);';
+          const iconClass = isMerged ? 'ti ti-git-merge text-sm' : 'ti ti-git-pull-request text-sm';
+          const iconColor = isMerged ? 'var(--color-accent-purple)' : 'var(--color-accent-green)';
           const drawerId = `edu-drawer-${item.id}`;
           const buttonId = `edu-toggle-${item.id}`;
           return (
-            <div
-              style={idx > 0 ? 'border-top: 1px solid var(--color-border);' : ''}
+          <div
+            style={idx > 0 ? 'border-top: 1px solid var(--color-border);' : ''}
+          >
+            <!-- Row header (clickable) -->
+            <button
+              id={buttonId}
+              class="w-full text-left px-4 py-4 flex items-start gap-3 transition-colors"
+              style="background: transparent; border: none; cursor: pointer;"
+              @click={`toggle('${item.id}')`}
+              :aria-expanded={`expandedId === '${item.id}'`}
+              aria-controls={drawerId}
             >
-              <!-- Row header (clickable) -->
-              <button
-                id={buttonId}
-                class="w-full text-left px-4 py-4 flex items-start gap-3 transition-colors"
-                style="background: transparent; border: none; cursor: pointer;"
-                @click={`toggle('${item.id}')`}
-                :aria-expanded={`expandedId === '${item.id}'`}
-                aria-controls={drawerId}
-              >
-                <!-- PR icon box -->
-                <div
-                  class="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5"
-                  style="background-color: rgba(188,140,255,0.1); border: 1px solid rgba(188,140,255,0.25);"
-                >
-                  <i class="ti ti-git-pull-request text-sm" style="color: var(--color-accent-purple);"></i>
-                </div>
-
-                <!-- Middle content -->
-                <div class="flex-1 min-w-0">
-                  <!-- Title + PR number -->
-                  <div class="flex items-center gap-2 flex-wrap">
-                    <span class="font-medium text-sm" style="color: var(--color-text-primary);"
-                      x-text={`lang === 'pt' ? '${item.titlePt}' : '${item.titleEn}'`}
-                    >{item.titlePt}</span>
-                    <span class="font-mono text-xs" style="color: var(--color-text-subtle);">#{item.prNumber}</span>
-                  </div>
-                  <!-- Institution -->
-                  <div class="flex items-center gap-1.5 mt-0.5">
-                    <i class="ti ti-school text-xs" style="color: var(--color-text-subtle);"></i>
-                    <span class="text-xs" style="color: var(--color-text-muted);"
-                      x-text={`lang === 'pt' ? '${item.institutionPt}' : '${item.institutionEn}'`}
-                    >{item.institutionPt}</span>
-                  </div>
-                  <!-- Status row -->
-                  <div class="flex items-center gap-2 mt-1.5 flex-wrap">
-                    <span
-                      class="text-xs font-mono px-2 py-0.5 rounded-full"
-                      style={badgeStyle}
-                      x-text={badgeKey}
-                    >{badgeFallback}</span>
-                    {isMerged && (
-                      <span class="text-xs" style="color: var(--color-text-muted);">
-                        <span x-text="t.edu_merged_by">concluído por kelvinlima em</span> {item.period}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <!-- Date (right) -->
-                <div class="flex-shrink-0 text-right hidden sm:block">
-                  <span class="flex items-center gap-1 text-xs" style="color: var(--color-text-muted);">
-                    <i class="ti ti-calendar text-xs"></i>
-                    {item.period}
-                  </span>
-                </div>
-
-                <!-- Chevron -->
-                <i
-                  class="ti ti-chevron-right text-sm flex-shrink-0 mt-1"
-                  :style={`expandedId === '${item.id}' ? 'transform: rotate(90deg); color: var(--color-accent); transition: transform 0.2s, color 0.2s;' : 'transition: transform 0.2s, color 0.2s; color: var(--color-text-muted);'`}
-                ></i>
-              </button>
-
-              <!-- Collapsible drawer -->
+              <!-- PR icon box -->
               <div
-                id={drawerId}
-                role="region"
-                aria-labelledby={buttonId}
-                :class={`expandedId === '${item.id}' ? 'edu-drawer open' : 'edu-drawer'`}
+                class="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5"
+                style={iconBoxStyle}
               >
-                <div>
-                  <div class="px-4 pb-5 ml-11">
+                <i class={iconClass} style={`color: ${iconColor};`}></i>
+              </div>
 
-                    <!-- Mini header bar -->
-                    <div
-                      class="flex items-center justify-between px-3 py-2 rounded-md mb-4 font-mono text-xs"
-                      style="background-color: var(--color-bg-panel); border: 1px solid var(--color-border);"
-                    >
-                      <span style="color: var(--color-text-muted);" x-text="t.edu_commented">kelvinlima91 commented</span>
-                      <span style="color: var(--color-text-subtle);" x-text="t.edu_contributor">original contributor</span>
-                    </div>
-
-                    <!-- Description -->
-                    <p class="text-sm leading-relaxed mb-4" style="color: var(--color-text-muted);"
-                      x-text={`lang === 'pt' ? '${item.descriptionPt}' : '${item.descriptionEn}'`}
-                    >{item.descriptionPt}</p>
-
-                    {item.modules.length > 0 && (
-                      <Fragment>
-                        <!-- Modules heading -->
-                        <div class="flex items-center gap-2 mb-3">
-                          <i class="ti ti-message-circle text-sm" style="color: var(--color-accent);"></i>
-                          <span class="text-xs font-medium" style="color: var(--color-text-primary);" x-text="t.edu_modules_heading">Módulos &amp; Competências Chave:</span>
-                        </div>
-                        <!-- Modules grid -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
-                          {item.modules.map((module) => (
-                            <div class="flex items-start gap-2">
-                              <i class="ti ti-circle-check text-xs flex-shrink-0 mt-0.5" style="color: #3fb950;"></i>
-                              <span class="text-xs" style="color: var(--color-text-muted);">{module}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </Fragment>
-                    )}
-
-                    {item.statusNotePt && (
-                      <!-- Status note -->
-                      <div
-                        class="rounded-md p-4 flex gap-3"
-                        style="border: 1px solid var(--color-border); background-color: var(--color-bg-inset);"
-                      >
-                        <i class="ti ti-clock text-lg flex-shrink-0 mt-0.5" style="color: var(--color-text-muted);"></i>
-                        <p class="text-xs leading-relaxed" style="color: var(--color-text-muted);"
-                          x-text={`lang === 'pt' ? '${item.statusNotePt}' : '${item.statusNoteEn}'`}
-                        >{item.statusNotePt}</p>
-                      </div>
-                    )}
-
-                  </div>
+              <!-- Middle content -->
+              <div class="flex-1 min-w-0">
+                <!-- Title + PR number -->
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="font-medium text-sm" style="color: var(--color-text-primary);"
+                    x-text={`lang === 'pt' ? '${item.titlePt}' : '${item.titleEn}'`}
+                  >{item.titlePt}</span>
+                  <span class="font-mono text-xs" style="color: var(--color-text-subtle);">#{item.prNumber}</span>
+                </div>
+                <!-- Institution -->
+                <div class="flex items-center gap-1.5 mt-0.5">
+                  <i class="ti ti-school text-xs" style="color: var(--color-text-subtle);"></i>
+                  <span class="text-xs" style="color: var(--color-text-muted);"
+                    x-text={`lang === 'pt' ? '${item.institutionPt}' : '${item.institutionEn}'`}
+                  >{item.institutionPt}</span>
+                </div>
+                <!-- Status row -->
+                <div class="flex items-center gap-2 mt-1.5 flex-wrap">
+                  <span
+                    class="text-xs font-mono px-2 py-0.5 rounded-full"
+                    style={isMerged
+                      ? 'background-color: rgba(188,140,255,0.12); border: 1px solid rgba(188,140,255,0.3); color: var(--color-accent-purple);'
+                      : 'background-color: rgba(63,185,80,0.12); border: 1px solid rgba(63,185,80,0.3); color: var(--color-accent-green);'}
+                    x-text={isMerged ? 't.edu_merged_label' : 't.edu_open_label'}
+                  >{isMerged ? 'Integrado' : 'Aberto'}</span>
+                  {isMerged && (
+                    <span class="text-xs" style="color: var(--color-text-muted);">
+                      <span x-text="t.edu_merged_by">concluído por kelvinlima em</span> {item.period}
+                    </span>
+                  )}
                 </div>
               </div>
 
+              <!-- Date (right) -->
+              <div class="flex-shrink-0 text-right hidden sm:block">
+                <span class="flex items-center gap-1 text-xs" style="color: var(--color-text-muted);">
+                  <i class="ti ti-calendar text-xs"></i>
+                  {item.period}
+                </span>
+              </div>
+
+              <!-- Chevron -->
+              <i
+                class="ti ti-chevron-right text-sm flex-shrink-0 mt-1"
+                :style={`expandedId === '${item.id}' ? 'transform: rotate(90deg); color: var(--color-accent); transition: transform 0.2s, color 0.2s;' : 'transition: transform 0.2s, color 0.2s; color: var(--color-text-muted);'`}
+              ></i>
+            </button>
+
+            <!-- Collapsible drawer -->
+            <div id={drawerId} role="region" aria-labelledby={buttonId} :class={`expandedId === '${item.id}' ? 'edu-drawer open' : 'edu-drawer'`}>
+              <div>
+                <div class="px-4 pb-5 ml-11">
+
+                  <!-- Mini header bar -->
+                  <div
+                    class="flex items-center justify-between px-3 py-2 rounded-md mb-4 font-mono text-xs"
+                    style="background-color: var(--color-bg-panel); border: 1px solid var(--color-border);"
+                  >
+                    <span style="color: var(--color-text-muted);" x-text="t.edu_commented">kelvinlima91 commented</span>
+                    <span style="color: var(--color-text-subtle);" x-text="t.edu_contributor">original contributor</span>
+                  </div>
+
+                  <!-- Description -->
+                  <p class="text-sm leading-relaxed mb-4" style="color: var(--color-text-muted);"
+                    x-text={`lang === 'pt' ? '${item.descriptionPt}' : '${item.descriptionEn}'`}
+                  >{item.descriptionPt}</p>
+
+                  {item.modules.length > 0 && (
+                    <Fragment>
+                      <!-- Modules heading -->
+                      <div class="flex items-center gap-2 mb-3">
+                        <i class="ti ti-message-circle text-sm" style="color: var(--color-accent);"></i>
+                        <span class="text-xs font-medium" style="color: var(--color-text-primary);" x-text="t.edu_modules_heading">Módulos &amp; Competências Chave:</span>
+                      </div>
+                      <!-- Modules grid -->
+                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
+                        {item.modules.map((module) => (
+                          <div class="flex items-start gap-2">
+                            <i class="ti ti-circle-check text-xs flex-shrink-0 mt-0.5" style="color: #3fb950;"></i>
+                            <span class="text-xs" style="color: var(--color-text-muted);">{module}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </Fragment>
+                  )}
+
+
+                </div>
+              </div>
             </div>
+
+          </div>
           );
         })}
       </div>
@@ -719,7 +722,7 @@ const openCount = EDUCATION.filter((item) => item.status === 'open').length;
               <!-- Done line -->
               <div class="mt-3 flex items-center gap-1.5">
                 <i class="ti ti-check text-xs" style="color: #3fb950;"></i>
-                <span style="color: var(--color-text-muted);" x-text="t.stack_process_done">Process completed with code 0</span>
+                <span style="color: var(--color-text-muted);" x-text="t.stack_process_done">Processo concluído com código 0</span>
               </div>
             </div>
           </div>
@@ -832,7 +835,7 @@ const openCount = EDUCATION.filter((item) => item.status === 'open').length;
                 />
               </div>
 
-              <!-- Honeypot: hidden from real visitors, left empty by them; bots that auto-fill every field trip it -->
+              <!-- Honeypot: hidden from real visitors; bots that auto-fill every field trip it -->
               <div aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
                 <label for="contact-company">Company</label>
                 <input id="contact-company" type="text" name="company" x-model="honeypot" tabindex="-1" autocomplete="off" />
@@ -979,6 +982,35 @@ const openCount = EDUCATION.filter((item) => item.status === 'open').length;
 
     Alpine.data('projectsSection', () => ({
       projects: PROJECTS,
+      search: '',
+      langFilter: 'all',
+      sortBy: 'stars',
+
+      get filteredProjects() {
+        let result = [...this.projects];
+        if (this.search) {
+          const q = this.search.toLowerCase();
+          result = result.filter((p) =>
+            p.name.toLowerCase().includes(q) ||
+            p.descriptionPt.toLowerCase().includes(q) ||
+            p.descriptionEn.toLowerCase().includes(q)
+          );
+        }
+        if (this.langFilter !== 'all') {
+          result = result.filter((p) => p.language === this.langFilter);
+        }
+        if (this.sortBy === 'stars') {
+          result.sort((a, b) => b.stars - a.stars);
+        } else if (this.sortBy === 'name') {
+          result.sort((a, b) => a.name.localeCompare(b.name));
+        }
+        return result;
+      },
+
+      resetFilters() {
+        this.search = '';
+        this.langFilter = 'all';
+      },
     }));
 
     Alpine.data('educationSection', () => ({
