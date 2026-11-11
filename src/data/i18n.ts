@@ -34,15 +34,15 @@ export const translations = {
     home_footer_coffee: 'Café vira código',
 
     // Contribution history
-    home_contrib_title: 'Histórico de contribuições',
-    home_contrib_sub: '371 dias de atividade real em código',
+    home_contrib_title: 'Linha do tempo dos projetos',
+    home_contrib_sub: 'Representação ilustrativa, não reflete commits reais',
     home_contrib_less: 'Menos',
     home_contrib_more: 'Mais commits',
     home_contrib_launch_label: 'Início de projeto',
     home_contrib_footnote: 'Passa o rato sobre um ponto para ver o projeto',
 
     // Projects section
-    section_projects_title: 'Projetos e Repositórios',
+    section_projects_title: 'Projetos',
     section_projects_sub: 'Produtos que construí para o mercado cabo-verdiano.',
     projects_search_ph: 'Procurar repositório...',
     projects_all: 'Todos',
@@ -163,15 +163,15 @@ export const translations = {
     home_footer_coffee: 'Coffee into code',
 
     // Contribution history
-    home_contrib_title: 'Contribution history',
-    home_contrib_sub: '371 days of real activity in code',
+    home_contrib_title: 'Project timeline',
+    home_contrib_sub: 'Illustrative, not real commit data',
     home_contrib_less: 'Less',
     home_contrib_more: 'More commits',
     home_contrib_launch_label: 'Project launch',
     home_contrib_footnote: 'Hover over a node to inspect project launch',
 
     // Projects section
-    section_projects_title: 'Projects and Repositories',
+    section_projects_title: 'Projects',
     section_projects_sub: 'Products I built for the Cape Verdean market.',
     projects_search_ph: 'Find a repository...',
     projects_all: 'All',

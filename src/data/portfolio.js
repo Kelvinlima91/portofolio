@@ -230,5 +230,5 @@ export const CONTRIB_MARKERS = [
   { posPercent: 8,  namePt: 'O Menu CV',          nameEn: 'O Menu CV',          datePt: 'iniciado em Julho 2024',    dateEn: 'started in July 2024' },
   { posPercent: 35, namePt: 'Reklama (lroOnline)', nameEn: 'Reklama (lroOnline)', datePt: 'iniciado em Novembro 2024', dateEn: 'started in November 2024' },
   { posPercent: 62, namePt: 'Portal de Vagas CV',  nameEn: 'Portal de Vagas CV',  datePt: 'iniciado em Março 2025',   dateEn: 'started in March 2025' },
-  { posPercent: 88, namePt: 'Portfolio pessoal',   nameEn: 'Portfolio pessoal',   datePt: 'iniciado em Junho 2025',   dateEn: 'started in June 2025' },
+  { posPercent: 88, namePt: 'Portfolio pessoal',   nameEn: 'Portfolio pessoal',   datePt: 'iniciado em Junho 2026',   dateEn: 'started in June 2026' },
 ];
